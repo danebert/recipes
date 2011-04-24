@@ -7,28 +7,31 @@
 	<packaging>war</packaging>
 	<name>Recipes</name>
 
-	<build>  <sourceDirectory>C:\Users\dan\workspace\danrecipes\src\main\java</sourceDirectory>
-    <scriptSourceDirectory>C:\Users\dan\workspace\danrecipes\src\main\scripts</scriptSourceDirectory>
-    <testSourceDirectory>C:\Users\dan\workspace\danrecipes\src\test\java</testSourceDirectory>
+	<build>
+		<sourceDirectory>C:\Users\dan\workspace\danrecipes\src\main\java</sourceDirectory>
+		<scriptSourceDirectory>C:\Users\dan\workspace\danrecipes\src\main\scripts</scriptSourceDirectory>
+		<testSourceDirectory>C:\Users\dan\workspace\danrecipes\src\test\java</testSourceDirectory>
 		<outputDirectory>${project.build.directory}\war\WEB-INF\classes</outputDirectory>
-    <testOutputDirectory>C:\Users\dan\workspace\danrecipes\target\test-classes</testOutputDirectory>
-    <resources>
-      <resource>
-        <directory>C:\Users\dan\workspace\danrecipes\src\main\resources</directory>
-      </resource>
-    </resources>
-    <testResources>
-      <testResource>
-        <directory>C:\Users\dan\workspace\danrecipes\src\test\resources</directory>
-      </testResource>
-    </testResources>
-    <directory>C:\Users\dan\workspace\danrecipes\target</directory>
+		<testOutputDirectory>C:\Users\dan\workspace\danrecipes\target\test-classes</testOutputDirectory>
+		<resources>
+			<resource>
+				<directory>C:\Users\dan\workspace\danrecipes\src\main\resources</directory>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>C:\Users\dan\workspace\danrecipes\src\test\resources</directory>
+			</testResource>
+		</testResources>
+		<directory>C:\Users\dan\workspace\danrecipes\target</directory>
 		<pluginManagement>
 			<plugins>
 				<plugin>
 					<artifactId>maven-war-plugin</artifactId>
 					<version>2.1.1</version>
-					<configuration><webXml>war\WEB-INF\web.xml</webXml></configuration>
+					<configuration>
+						<webXml>war\WEB-INF\web.xml</webXml>
+					</configuration>
 					<executions>
 						<execution>
 							<id>default-war</id>
