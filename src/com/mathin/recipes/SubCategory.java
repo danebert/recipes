@@ -1,21 +1,17 @@
 package com.mathin.recipes;
 
-import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
-import javax.jdo.annotations.PrimaryKey;
-
-import com.google.appengine.api.datastore.Key;
 
 @PersistenceCapable
-public class SubCategory {
-	@PrimaryKey
-	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-	private Key key;
+public class SubCategory extends PersistedObject {
+
 	@Persistent
 	private Category category;
 	@Persistent
 	private String name;
+	@Persistent
+	private Integer order;
 
 	public void setCategory(Category category) {
 		this.category = category;
@@ -33,8 +29,11 @@ public class SubCategory {
 		return name;
 	}
 
-	public Key getKey() {
-		return key;
+	public void setOrder(Integer order) {
+		this.order = order;
 	}
 
+	public Integer getOrder() {
+		return order;
+	}
 }

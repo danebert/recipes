@@ -7,12 +7,16 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
+import com.google.appengine.api.users.User;
+
 @PersistenceCapable
 @Inheritance(strategy = InheritanceStrategy.SUBCLASS_TABLE)
 public class PersistedObject {
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private Long id;
+	@Persistent
+	private User user;
 
 	public void setId(Long id) {
 		this.id = id;
@@ -20,6 +24,14 @@ public class PersistedObject {
 
 	public Long getId() {
 		return id;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public User getUser() {
+		return user;
 	}
 
 }

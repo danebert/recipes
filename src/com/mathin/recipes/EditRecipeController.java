@@ -1,5 +1,6 @@
 package com.mathin.recipes;
 
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -15,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.appengine.api.users.User;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 import com.mathin.appengine.PMF;
 
 @Controller
@@ -23,6 +27,7 @@ import com.mathin.appengine.PMF;
 public class EditRecipeController {
 	private static final Logger LOGGER = Logger
 			.getLogger(EditRecipeController.class.getName());
+	UserService userService = UserServiceFactory.getUserService();
 
 	// @InitBinder
 	// public void initBinder(WebDataBinder binder) {
@@ -44,8 +49,7 @@ public class EditRecipeController {
 
 	@RequestMapping(value = "/{recipeKey}", method = RequestMethod.GET)
 	public String edit(@PathVariable String recipeKey, Model model) {
-		PersistenceManager persistenceManager = PMF.get()
-				.getPersistenceManager();
+		PersistenceManager persistenceManager = getPersistenceManager();
 
 		try {
 			Long recipeId = Long.valueOf(recipeKey);
@@ -61,14 +65,23 @@ public class EditRecipeController {
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView processResult(@Valid Recipe recipe, BindingResult result) {
 		ModelAndView modelAndView = new ModelAndView();
-		PersistenceManager persistenceManager = PMF.get()
-				.getPersistenceManager();
 		modelAndView.setViewName("recipe/edit");
 		if (result.hasErrors()) {
 			LOGGER.log(Level.WARNING, "errors");
 			modelAndView.getModel().put("recipe", recipe);
 			return modelAndView;
 		}
+
+		if (null == recipe.getDateCreated()) {
+			recipe.setDateCreated(new Date());
+		}
+
+		if (null == recipe.getUser()) {
+			User user = userService.getCurrentUser();
+			recipe.setUser(user);
+		}
+
+		PersistenceManager persistenceManager = getPersistenceManager();
 		try {
 			persistenceManager.makePersistent(recipe);
 		} finally {
@@ -76,5 +89,12 @@ public class EditRecipeController {
 		}
 		LOGGER.log(Level.WARNING, "here");
 		return modelAndView;
+	}
+
+	// protected for testing
+	protected PersistenceManager getPersistenceManager() {
+		PersistenceManager persistenceManager = PMF.get()
+				.getPersistenceManager();
+		return persistenceManager;
 	}
 }

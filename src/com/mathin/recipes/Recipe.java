@@ -1,5 +1,7 @@
 package com.mathin.recipes;
 
+import java.util.Date;
+
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.validation.constraints.NotNull;
@@ -14,14 +16,19 @@ public class Recipe extends PersistedObject {
 	private String title;
 	@Persistent
 	private Text body;
-
 	// @Persistent
 	// private Category category;
 	// @Persistent
 	// private SubCategory subCategory;
+	@Persistent
+	private Integer rating;
+	@Persistent
+	private Date dateCreated;
+	@Persistent
+	private Text notes;
 
 	@NotNull
-	@Size(min = 2, max = 50)
+	@Size(min = 2, max = 100)
 	public String getTitle() {
 		return title;
 	}
@@ -39,6 +46,7 @@ public class Recipe extends PersistedObject {
 		this.body = body;
 	}
 
+	// @NotNull
 	// public Category getCategory() {
 	// return category;
 	// }
@@ -46,6 +54,7 @@ public class Recipe extends PersistedObject {
 	// public void setCategory(Category category) {
 	// this.category = category;
 	// }
+
 	//
 	// public SubCategory getSubCategory() {
 	// return subCategory;
@@ -55,4 +64,27 @@ public class Recipe extends PersistedObject {
 	// this.subCategory = subCategory;
 	// }
 
+	public Integer getRating() {
+		return rating;
+	}
+
+	public void setRating(Integer rating) {
+		this.rating = rating;
+	}
+
+	public Date getDateCreated() {
+		return dateCreated;
+	}
+
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+
+	public Text getNotes() {
+		return notes;
+	}
+
+	public void setNotes(Text notes) {
+		this.notes = notes;
+	}
 }
