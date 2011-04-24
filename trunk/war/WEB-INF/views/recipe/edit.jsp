@@ -9,6 +9,10 @@
 
 	<form:form modelAttribute="recipe">
 		<table>
+		<tr>
+                <td>Recipe Owner:</td>
+                <td>${recipe.user}</td>
+            </tr>
 			<tr>
 				<td>Title:</td>
 				<td><form:input path="title" /><form:errors path="title" /></td>
