@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import javax.jdo.PersistenceManager;
 
+import com.google.appengine.api.datastore.KeyFactory;
 import com.mathin.recipes.PersistedObject;
 
 public class JDOEditor<T extends PersistedObject> extends PropertyEditorSupport {
@@ -27,7 +28,7 @@ public class JDOEditor<T extends PersistedObject> extends PropertyEditorSupport 
 			T object = null;
 			try {
 				object = persistenceManager.getObjectById(clazz,
-						Long.valueOf(text));
+						KeyFactory.stringToKey(text));
 			} catch (Exception e) {
 				LOGGER.log(Level.SEVERE, "Cannot parse key: " + text, e);
 			}
@@ -38,7 +39,7 @@ public class JDOEditor<T extends PersistedObject> extends PropertyEditorSupport 
 	@Override
 	public String getAsText() {
 		T value = (T) getValue();
-		return value != null ? value.getId().toString() : "";
+		return value != null ? value.getEncodedKey() : "";
 	}
 
 }

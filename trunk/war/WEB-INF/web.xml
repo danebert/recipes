@@ -19,7 +19,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 
 	<security-constraint>
 		<web-resource-collection>
-			<url-pattern>/recipe/edit/*</url-pattern>
+			<url-pattern>/edit/*</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
 			<role-name>admin</role-name>
