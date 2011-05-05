@@ -1,12 +1,11 @@
 package com.mathin.recipes;
 
-import java.util.Date;
-
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.Text;
 
 @PersistenceCapable
@@ -16,14 +15,14 @@ public class Recipe extends PersistedObject {
 	private String title;
 	@Persistent
 	private Text body;
-	// @Persistent
-	// private Category category;
+
+	@Persistent
+	private Key categoryKey;
+
 	// @Persistent
 	// private SubCategory subCategory;
 	@Persistent
 	private Integer rating;
-	@Persistent
-	private Date dateCreated;
 	@Persistent
 	private Text notes;
 
@@ -47,13 +46,13 @@ public class Recipe extends PersistedObject {
 	}
 
 	// @NotNull
-	// public Category getCategory() {
-	// return category;
-	// }
-	//
-	// public void setCategory(Category category) {
-	// this.category = category;
-	// }
+	public Key getCategoryKey() {
+		return categoryKey;
+	}
+
+	public void setCategoryKey(Key categoryKey) {
+		this.categoryKey = categoryKey;
+	}
 
 	//
 	// public SubCategory getSubCategory() {
@@ -72,14 +71,6 @@ public class Recipe extends PersistedObject {
 		this.rating = rating;
 	}
 
-	public Date getDateCreated() {
-		return dateCreated;
-	}
-
-	public void setDateCreated(Date dateCreated) {
-		this.dateCreated = dateCreated;
-	}
-
 	public Text getNotes() {
 		return notes;
 	}
@@ -87,4 +78,5 @@ public class Recipe extends PersistedObject {
 	public void setNotes(Text notes) {
 		this.notes = notes;
 	}
+
 }

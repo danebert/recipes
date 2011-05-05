@@ -13,6 +13,10 @@
 			<td valign="top">Body:</td>
 			<td>${recipe.body.value}</td>
 		</tr>
+		<tr>
+			<td valign="top">Category:</td>
+			<td>${recipe.categoryKey}</td>
+		</tr>
 	</table>
 </body>
 </html>

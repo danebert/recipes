@@ -17,9 +17,9 @@ import org.springframework.validation.BindingResult;
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 
-public class EditRecipeControllerTest extends EasyMockSupport {
+public class EditCategoryControllerTest extends EasyMockSupport {
 
-	private EditRecipeController controller;
+	private EditCategoryController controller;
 	private PersistenceManager mockPersistenceManager;
 	private UserService mockUserService;
 
@@ -27,7 +27,7 @@ public class EditRecipeControllerTest extends EasyMockSupport {
 	public void setUp() throws Exception {
 		mockPersistenceManager = createMock(PersistenceManager.class);
 		mockUserService = createMock(UserService.class);
-		controller = new EditRecipeController() {
+		controller = new EditCategoryController() {
 
 			@Override
 			protected PersistenceManager getPersistenceManager() {
@@ -46,46 +46,47 @@ public class EditRecipeControllerTest extends EasyMockSupport {
 		Model model = new ExtendedModelMap();
 		// unit under test
 		controller.setupForm(model);
-		assertNotNull("No recipe in model", model.asMap().get("recipe"));
+		assertNotNull("No category in model", model.asMap().get("category"));
 	}
 
 	@Test
 	public void testSetupFormWithRecipe() {
 		Model model = new ExtendedModelMap();
-		Recipe recipe = new Recipe();
-		model.addAttribute("recipe", recipe);
+		Category category = new Category();
+		model.addAttribute("category", category);
 		// unit under test
 		controller.setupForm(model);
-		assertEquals("Wrong recipe in model", recipe,
-				model.asMap().get("recipe"));
+		assertEquals("Wrong category in model", category,
+				model.asMap().get("category"));
 	}
 
 	@Test
 	public void testEdit() {
 		Model model = new ExtendedModelMap();
 
-		Recipe recipe = new Recipe();
-		String recipeKey = "24";
-		EasyMock.expect(mockPersistenceManager.getObjectById(Recipe.class, 24L))
-				.andReturn(recipe);
+		Category category = new Category();
+		String categoryKey = "24";
+		EasyMock.expect(
+				mockPersistenceManager.getObjectById(Category.class, 24L))
+				.andReturn(category);
 		mockPersistenceManager.close();
 
 		replayAll();
 		// unit under test
-		controller.edit(recipeKey, model);
-		assertEquals("recipe not added to model", recipe,
-				model.asMap().get("recipe"));
+		controller.edit(categoryKey, model);
+		assertEquals("category not added to model", category, model.asMap()
+				.get("category"));
 
 		verifyAll();
 	}
 
 	@Test
 	public void testProcessResultNew() {
-		Recipe recipe = new Recipe();
-		BindingResult result = new BindException(recipe, "recipe");
+		Category category = new Category();
+		BindingResult result = new BindException(category, "category");
 
-		EasyMock.expect(mockPersistenceManager.makePersistent(recipe))
-				.andReturn(recipe);
+		EasyMock.expect(mockPersistenceManager.makePersistent(category))
+				.andReturn(category);
 		mockPersistenceManager.close();
 
 		User user = new User("test@example.com", "example.com");
@@ -94,10 +95,10 @@ public class EditRecipeControllerTest extends EasyMockSupport {
 		replayAll();
 
 		// unit under test
-		controller.processResult(recipe, result);
+		controller.processResult(category, result);
 		verifyAll();
 
-		assertNotNull("dateCreated not set", recipe.getDateCreated());
-		assertNotNull("user not set", recipe.getUser());
+		assertNotNull("dateCreated not set", category.getDateCreated());
+		assertNotNull("user not set", category.getUser());
 	}
 }
