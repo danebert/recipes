@@ -94,7 +94,7 @@ public class EditRecipeControllerTest extends EasyMockSupport {
 		replayAll();
 
 		// unit under test
-		controller.processResult(recipe, result);
+		controller.processResult(recipe, result, new ExtendedModelMap());
 		verifyAll();
 
 		assertNotNull("dateCreated not set", recipe.getDateCreated());
