@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
+import javax.jdo.Transaction;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -59,15 +60,16 @@ public class EditRecipeController extends PersistedObjectController<Recipe> {
 	@RequestMapping(value = "/{recipeKey}", method = RequestMethod.GET)
 	public String edit(@PathVariable String recipeKey, Model model) {
 		Long recipeId = Long.valueOf(recipeKey);
-		Recipe recipe = persistenceManager
-				.getObjectById(Recipe.class, recipeId);
+		Recipe recipe = getPersistenceManager().getObjectById(Recipe.class,
+				recipeId);
 		model.addAttribute("recipe", recipe);
-		populateCategories(model, persistenceManager);
+		populateCategories(model, getPersistenceManager());
 		return VIEW_NAME;
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView processResult(@Valid Recipe recipe, BindingResult result) {
+	public ModelAndView processResult(@Valid Recipe recipe,
+			BindingResult result, Model model) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName(VIEW_NAME);
 		if (result.hasErrors()) {
@@ -78,17 +80,22 @@ public class EditRecipeController extends PersistedObjectController<Recipe> {
 
 		populateUserAndDate(recipe);
 
+		Transaction currentTransaction = getPersistenceManager()
+				.currentTransaction();
 		try {
-			persistenceManager.currentTransaction().begin();
-			persistenceManager.makePersistent(recipe);
+			currentTransaction.begin();
+			getPersistenceManager().makePersistent(recipe);
+			currentTransaction.commit();
 		} catch (Exception e) {
 			LOGGER.log(Level.WARNING, "rolling back");
-			persistenceManager.currentTransaction().rollback();
+			e.printStackTrace();
+			if (currentTransaction.isActive()) {
+				currentTransaction.rollback();
+			}
 		} finally {
-
-			persistenceManager.currentTransaction().commit();
-			persistenceManager.close();
+			getPersistenceManager().close();
 		}
+		populateCategories(model, getPersistenceManager());
 		return modelAndView;
 	}
 
@@ -101,5 +108,13 @@ public class EditRecipeController extends PersistedObjectController<Recipe> {
 		@SuppressWarnings("unchecked")
 		List<Category> categories = (List<Category>) query.execute(currentUser);
 		model.addAttribute("categories", categories);
+	}
+
+	@Override
+	protected PersistenceManager getPersistenceManager() {
+		if (null == persistenceManager || persistenceManager.isClosed()) {
+			return super.getPersistenceManager();
+		}
+		return persistenceManager;
 	}
 }
