@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mathin.recipes.dao.CategoryDao;
 import com.mathin.recipes.domain.Category;
 
 @Controller
@@ -25,6 +26,8 @@ public class EditCategoryController extends PersistedObjectController<Category> 
 	private static final String VIEW_NAME = "edit/category";
 	private static final Logger LOGGER = Logger
 			.getLogger(EditCategoryController.class.getName());
+
+	private CategoryDao categoryDao;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String setupForm(Model model) {
@@ -40,11 +43,8 @@ public class EditCategoryController extends PersistedObjectController<Category> 
 
 	@RequestMapping(value = "/{categoryId}", method = RequestMethod.GET)
 	public String setupEditForm(@PathVariable Long categoryId, Model model) {
-		PersistenceManager persistenceManager = getPersistenceManagerFactory()
-				.getPersistenceManager();
 
-		Category category = persistenceManager.getObjectById(Category.class,
-				categoryId);
+		Category category = categoryDao.getById(Category.class, categoryId);
 		model.addAttribute("category", category);
 		return VIEW_NAME;
 	}
@@ -68,5 +68,9 @@ public class EditCategoryController extends PersistedObjectController<Category> 
 
 		persistenceManager.makePersistent(category);
 		return modelAndView;
+	}
+
+	public void setCategoryDao(CategoryDao categoryDao) {
+		this.categoryDao = categoryDao;
 	}
 }

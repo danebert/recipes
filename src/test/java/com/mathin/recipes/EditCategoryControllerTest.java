@@ -3,10 +3,11 @@ package com.mathin.recipes;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import javax.annotation.Resource;
+
 import org.easymock.EasyMockSupport;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.ui.ExtendedModelMap;
@@ -19,16 +20,11 @@ import com.mathin.recipes.domain.Category;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/spring-context.xml" })
 public class EditCategoryControllerTest extends EasyMockSupport {
-	@Autowired
+	@Resource
 	private EditCategoryController controller;
 
-	// @Before
-	// public void setup() {
-	// controller = new EditCategoryController();
-	// }
-
 	@Test
-	public void testSetupFormWithNoRecipe() {
+	public void testSetupFormWithNoCatgory() {
 		Model model = new ExtendedModelMap();
 		// unit under test
 		controller.setupForm(model);
@@ -36,7 +32,7 @@ public class EditCategoryControllerTest extends EasyMockSupport {
 	}
 
 	@Test
-	public void testSetupFormWithRecipe() {
+	public void testSetupFormWithCategory() {
 		Model model = new ExtendedModelMap();
 		Category category = new Category();
 		model.addAttribute("category", category);

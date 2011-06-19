@@ -16,4 +16,8 @@ public class BaseDao<T extends PersistedObject> {
 		return persistenceManagerFactory;
 	}
 
+	public T getById(Class<T> clazz, Long id) {
+		return getPersistenceManagerFactory().getPersistenceManager()
+				.getObjectById(clazz, id);
+	}
 }

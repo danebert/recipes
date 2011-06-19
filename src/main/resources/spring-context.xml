@@ -25,20 +25,20 @@
 	</bean>
 
 
-  <!-- PMF Bean -->
-    <bean id="pmf"
-        class="org.springframework.orm.jdo.LocalPersistenceManagerFactoryBean">
-        <property name="jdoProperties">
-            <props>
-                <prop key="javax.jdo.PersistenceManagerFactoryClass">
-                    org.datanucleus.api.jdo.JDOPersistenceManagerFactory</prop>
-                <prop key="javax.jdo.option.ConnectionURL">${db.url}</prop>
-                <prop key="javax.jdo.option.ConnectionUserName">${db.username}</prop>
-                <prop key="javax.jdo.option.ConnectionPassword">${db.password}</prop>
-                <prop key="javax.jdo.option.ConnectionDriverName">${db.driver}</prop>
-            </props>
-        </property>
-    </bean>
+	<!-- PMF Bean -->
+	<bean id="pmf"
+		class="org.springframework.orm.jdo.LocalPersistenceManagerFactoryBean">
+		<property name="jdoProperties">
+			<props>
+				<prop key="javax.jdo.PersistenceManagerFactoryClass">
+					org.datanucleus.api.jdo.JDOPersistenceManagerFactory</prop>
+				<prop key="javax.jdo.option.ConnectionURL">${db.url}</prop>
+				<prop key="javax.jdo.option.ConnectionUserName">${db.username}</prop>
+				<prop key="javax.jdo.option.ConnectionPassword">${db.password}</prop>
+				<prop key="javax.jdo.option.ConnectionDriverName">${db.driver}</prop>
+			</props>
+		</property>
+	</bean>
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="${db.driver}" />
@@ -46,13 +46,9 @@
 		<property name="username" value="${db.username}" />
 		<property name="password" value="${db.password}" />
 	</bean>
-<!-- 
-	<bean id="pmf" class="org.datanucleus.api.jdo.JDOPersistenceManagerFactory"
-		destroy-method="close">
-		<property name="connectionFactory" ref="dataSource" />
-		<property name="nontransactionalRead" value="true" />
-	</bean>
- -->
+	<!-- <bean id="pmf" class="org.datanucleus.api.jdo.JDOPersistenceManagerFactory" 
+		destroy-method="close"> <property name="connectionFactory" ref="dataSource" 
+		/> <property name="nontransactionalRead" value="true" /> </bean> -->
 	<bean id="persistenceManagerFactory"
 		class="org.springframework.orm.jdo.TransactionAwarePersistenceManagerFactoryProxy">
 		<property name="targetPersistenceManagerFactory" ref="pmf" />
@@ -64,5 +60,6 @@
 
 	<bean id="editCategoryController" class="com.mathin.recipes.EditCategoryController">
 		<property name="persistenceManagerFactory" ref="persistenceManagerFactory" />
+		<property name="categoryDao" ref="categoryDao" />
 	</bean>
 </beans>
