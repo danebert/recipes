@@ -11,5 +11,6 @@ class Recipe {
 	static constraints = {
 		title(blank:false)
 		body(blank:false)
+		category(blank:false)
 	}
 }
