@@ -30,9 +30,9 @@
 					
 						<th><g:message code="recipe.category.label" default="Category" /></th>
 					
-						<g:sortableColumn property="createdDate" title="${message(code: 'recipe.createdDate.label', default: 'Created Date')}" />
-					
 						<th><g:message code="recipe.subCategory.label" default="Sub Category" /></th>
+					
+						<g:sortableColumn property="createdDate" title="${message(code: 'recipe.createdDate.label', default: 'Created Date')}" />
 					
 					</tr>
 				</thead>
@@ -44,11 +44,11 @@
 					
 						<td>${fieldValue(bean: recipeInstance, field: "body")}</td>
 					
-						<td>${fieldValue(bean: recipeInstance, field: "category")}</td>
+						<td>${fieldValue(bean: recipeInstance, field: "category.name")}</td>
 					
+						<td>${fieldValue(bean: recipeInstance, field: "subCategory.name")}</td>
+						
 						<td><g:formatDate date="${recipeInstance.createdDate}" /></td>
-					
-						<td>${fieldValue(bean: recipeInstance, field: "subCategory")}</td>
 					
 					</tr>
 				</g:each>

@@ -45,7 +45,17 @@
 				<li class="fieldcontain">
 					<span id="category-label" class="property-label"><g:message code="recipe.category.label" default="Category" /></span>
 					
-						<span class="property-value" aria-labelledby="category-label"><g:link controller="category" action="show" id="${recipeInstance?.category?.id}">${recipeInstance?.category?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="category-label"><g:link controller="category" action="show" id="${recipeInstance?.category?.id}">${recipeInstance?.category?.name}</g:link></span>
+					
+				</li>
+				</g:if>
+			
+			
+				<g:if test="${recipeInstance?.subCategory}">
+				<li class="fieldcontain">
+					<span id="subCategory-label" class="property-label"><g:message code="recipe.subCategory.label" default="Sub Category" /></span>
+					
+						<span class="property-value" aria-labelledby="subCategory-label"><g:link controller="subCategory" action="show" id="${recipeInstance?.subCategory?.id}">${recipeInstance?.subCategory?.name}</g:link></span>
 					
 				</li>
 				</g:if>
@@ -58,16 +68,6 @@
 					
 				</li>
 				</g:if>
-			
-				<g:if test="${recipeInstance?.subCategory}">
-				<li class="fieldcontain">
-					<span id="subCategory-label" class="property-label"><g:message code="recipe.subCategory.label" default="Sub Category" /></span>
-					
-						<span class="property-value" aria-labelledby="subCategory-label"><g:link controller="subCategory" action="show" id="${recipeInstance?.subCategory?.id}">${recipeInstance?.subCategory?.encodeAsHTML()}</g:link></span>
-					
-				</li>
-				</g:if>
-			
 			</ol>
 			<g:form>
 				<fieldset class="buttons">

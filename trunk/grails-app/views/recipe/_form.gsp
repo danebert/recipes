@@ -15,7 +15,7 @@
 		<g:message code="recipe.body.label" default="Body" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="body" required="" value="${recipeInstance?.body}"/>
+	<g:textArea name="body" required="" value="${recipeInstance?.body}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: recipeInstance, field: 'category', 'error')} required">
@@ -23,7 +23,15 @@
 		<g:message code="recipe.category.label" default="Category" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="category" name="category.id" from="${com.mathin.recipes.Category.list()}" optionKey="id" required="" value="${recipeInstance?.category?.id}" class="many-to-one"/>
+	<g:select id="category" name="category.id" from="${com.mathin.recipes.Category.list()}" optionKey="id" optionValue="name" required="" value="${recipeInstance?.category?.id}" class="many-to-one"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: recipeInstance, field: 'subCategory', 'error')} required">
+	<label for="subCategory">
+		<g:message code="recipe.subCategory.label" default="Sub Category" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:select id="subCategory" name="subCategory.id" from="${com.mathin.recipes.SubCategory.list()}" optionKey="id" optionValue="name" required="" value="${recipeInstance?.subCategory?.id}" class="many-to-one"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: recipeInstance, field: 'createdDate', 'error')} required">
@@ -34,11 +42,4 @@
 	<g:datePicker name="createdDate" precision="day"  value="${recipeInstance?.createdDate}"  />
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: recipeInstance, field: 'subCategory', 'error')} required">
-	<label for="subCategory">
-		<g:message code="recipe.subCategory.label" default="Sub Category" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:select id="subCategory" name="subCategory.id" from="${com.mathin.recipes.SubCategory.list()}" optionKey="id" required="" value="${recipeInstance?.subCategory?.id}" class="many-to-one"/>
-</div>
 
