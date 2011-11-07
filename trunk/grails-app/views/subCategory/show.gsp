@@ -36,7 +36,7 @@
 				<li class="fieldcontain">
 					<span id="category-label" class="property-label"><g:message code="subCategory.category.label" default="Category" /></span>
 					
-						<span class="property-value" aria-labelledby="category-label"><g:link controller="category" action="show" id="${subCategoryInstance?.category?.id}">${subCategoryInstance?.category?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="category-label"><g:link controller="category" action="show" id="${subCategoryInstance?.category?.id}">${subCategoryInstance?.category?.name}</g:link></span>
 					
 				</li>
 				</g:if>

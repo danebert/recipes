@@ -15,7 +15,7 @@
 		<g:message code="subCategory.category.label" default="Category" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="category" name="category.id" from="${com.mathin.recipes.Category.list()}" optionKey="id" required="" value="${subCategoryInstance?.category?.id}" class="many-to-one"/>
+	<g:select id="category" name="category.id" from="${com.mathin.recipes.Category.list()}" optionKey="id" optionValue="name" required="" value="${subCategoryInstance?.category?.id}" class="many-to-one"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: subCategoryInstance, field: 'rank', 'error')} required">

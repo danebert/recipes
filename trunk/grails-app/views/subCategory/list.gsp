@@ -38,7 +38,7 @@
 					
 						<td><g:link action="show" id="${subCategoryInstance.id}">${fieldValue(bean: subCategoryInstance, field: "name")}</g:link></td>
 					
-						<td>${fieldValue(bean: subCategoryInstance, field: "category")}</td>
+						<td>${fieldValue(bean: subCategoryInstance, field: "category.name")}</td>
 					
 						<td>${fieldValue(bean: subCategoryInstance, field: "rank")}</td>
 					
