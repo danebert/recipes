@@ -32,11 +32,11 @@
       <thead>
         <tr>
 
-          <g:sortableColumn property="name"
-            title="${message(code: 'subCategory.name.label', default: 'Name')}" />
+          <g:sortableColumn property="category"
+            title="${message(code: 'subCategory.category.label', default: 'Category')}" />
 
           <g:sortableColumn property="name"
-            title="${message(code: 'subCategory.category.label', default: 'Category')}" />
+            title="${message(code: 'subCategory.name.label', default: 'Sub Category')}" />
             
           <th><g:message code="subCategory.rank.label" default="Rank" /></th>
 
@@ -46,13 +46,13 @@
         <g:each in="${subCategoryInstanceList}" status="i" var="subCategoryInstance">
           <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 
-            <td><g:link action="show" id="${subCategoryInstance.id}">
-                ${fieldValue(bean: subCategoryInstance, field: "name")}
-              </g:link></td>
-
             <td>
               ${fieldValue(bean: subCategoryInstance, field: "category.name")}
             </td>
+
+            <td><g:link action="show" id="${subCategoryInstance.id}">
+                ${fieldValue(bean: subCategoryInstance, field: "name")}
+              </g:link></td>
 
             <td>
               ${fieldValue(bean: subCategoryInstance, field: "rank")}

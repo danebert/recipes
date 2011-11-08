@@ -10,7 +10,9 @@ class BootStrap {
 			Category mainDish = new Category(name:"Main Dish", rank:2).save(failOnError: true)
 			Category salad = new Category(name:"Salad",rank:1).save(failOnError: true)
 
-			SubCategory beef = new SubCategory(name:"Beef",rank:1, category:mainDish).save(failOnError: true)
+			SubCategory beef = new SubCategory(name:"Beef",rank:3, category:mainDish).save(failOnError: true)
+			SubCategory chicken = new SubCategory(name:"Chicken",rank:1, category:mainDish).save(failOnError: true)
+			SubCategory veggie = new SubCategory(name:"Vegetarian",rank:2, category:mainDish).save(failOnError: true)
 			
 			SubCategory pasta = new SubCategory(name:"Pasta",rank:2, category:salad).save(failOnError: true)
 			SubCategory green = new SubCategory(name:"Green",rank:1, category:salad).save(failOnError: true)
