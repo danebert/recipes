@@ -1,6 +1,6 @@
 package com.mathin.recipes
 
-class SubCategory {
+class SubCategory implements Comparable {
 	static hasMany = [recipes:Recipe]
 
 	String name
@@ -9,5 +9,9 @@ class SubCategory {
 	static constraints = {
 		name(blank: false)
 		category(blank: false)
+	}
+	@Override
+	public int compareTo(Object object) {
+		rank.compareTo(object.rank)
 	}
 }
