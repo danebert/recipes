@@ -31,13 +31,11 @@
         ${flash.message}
       </div>
     </g:if>
-    <table class="center narrow">
+    <table class="center narrow recipeBody">
       <tr>
         <td>
           <div class="recipeBody">
-
-            <g:fieldValue bean="${recipeInstance}" field="body" />
-
+            <g:addLineBreaks><g:fieldValue bean="${recipeInstance}" field="body" /></g:addLineBreaks>
           </div>
 
         </td>
