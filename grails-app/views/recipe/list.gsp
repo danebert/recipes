@@ -34,7 +34,7 @@
   </div>
   <div id="list-recipe" class="content scaffold-list" role="main">
     <h1>
-      <g:message code="default.list.label" args="[entityName]" />
+      Recipes
     </h1>
     <g:if test="${flash.message}">
       <div class="message" role="status">
@@ -49,7 +49,7 @@
         <div class="indent">
         <g:each in="${categoryInstance.subCategories}" var="subCategoryInstance">
           <h3>
-            <a onclick="switchMenu('sub_${subCategoryInstance.id}');">
+            <a href="#" onclick="switchMenu('sub_${subCategoryInstance.id}');">
               ${fieldValue(bean: subCategoryInstance, field: "name")}
             </a>
           </h3>
