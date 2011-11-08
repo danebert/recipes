@@ -6,7 +6,23 @@
 <meta name="layout" content="main">
 <g:set var="entityName" value="${message(code: 'recipe.label', default: 'Recipe')}" />
 <title><g:message code="default.list.label" args="[entityName]" /></title>
+
+<script type="text/javascript">
+<!--
+function switchMenu(obj) {
+  var el = document.getElementById(obj);
+  if ( el.style.display != "none" ) {
+    el.style.display = 'none';
+  }
+  else {
+    el.style.display = '';
+  }
+}
+//-->
+</script>
+
 </head>
+
 <body>
   <a href="#list-recipe" class="skip" tabindex="-1"><g:message code="default.link.skip.label"
       default="Skip to content&hellip;" /></a>
@@ -35,8 +51,9 @@
       </h2>
       <g:each in="${categoryInstance.subCategories}" var="subCategoryInstance">
         <h3>
-          ${fieldValue(bean: subCategoryInstance, field: "name")}
+          <a onclick="switchMenu('sub_${subCategoryInstance.id}');">${fieldValue(bean: subCategoryInstance, field: "name")}</a>
         </h3>
+        <div id="sub_${subCategoryInstance.id}" style="display:none">
         <table>
           <g:each in="${subCategoryInstance.recipes}" status="ri" var="recipeInstance">
             <tr class="${(ri % 2) == 0 ? 'even' : 'odd'}">
@@ -46,6 +63,7 @@
             </tr>
           </g:each>
         </table>
+        </div>
       </g:each>
     </g:each>
 
