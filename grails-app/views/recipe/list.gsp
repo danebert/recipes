@@ -28,34 +28,27 @@
         ${flash.message}
       </div>
     </g:if>
-    <table>
-      <tbody>
-        <g:each in="${categoryInstanceList}" status="ci" var="categoryInstance">
-          <tr>
-            <td>
-              ${fieldValue(bean: categoryInstance, field: "name")}
-            </td>
-            <td><g:each in="${categoryInstance.subCategories}" status="sci"
-                var="subCategoryInstance">
-                <table>
-                  <tr>
-                    <td>
-                      ${fieldValue(bean: subCategoryInstance, field: "name")}
-                    </td>
-                  </tr>
-                  <g:each in="${subCategoryInstance.recipes}" status="ri" var="recipeInstance">
-                    <tr class="${(ri % 2) == 0 ? 'even' : 'odd'}">
-                      <td><g:link action="show" id="${recipeInstance.id}">
-                          ${fieldValue(bean: recipeInstance, field: "title")}
-                        </g:link></td>
-                    </tr>
-                  </g:each>
-                </table>
-              </g:each></td>
-        </g:each>
-        </tr>
-      </tbody>
-    </table>
+
+    <g:each in="${categoryInstanceList}" var="categoryInstance">
+      <h2>
+        ${fieldValue(bean: categoryInstance, field: "name")}
+      </h2>
+      <g:each in="${categoryInstance.subCategories}" var="subCategoryInstance">
+        <h3>
+          ${fieldValue(bean: subCategoryInstance, field: "name")}
+        </h3>
+        <table>
+          <g:each in="${subCategoryInstance.recipes}" status="ri" var="recipeInstance">
+            <tr class="${(ri % 2) == 0 ? 'even' : 'odd'}">
+              <td><g:link action="show" id="${recipeInstance.id}">
+                  ${fieldValue(bean: recipeInstance, field: "title")}
+                </g:link></td>
+            </tr>
+          </g:each>
+        </table>
+      </g:each>
+    </g:each>
+
     <div class="pagination">
       <g:paginate total="${recipeInstanceTotal}" />
     </div>
