@@ -1,6 +1,7 @@
 package com.mathin.recipes
 
 class SubCategory {
+	static hasMany = [recipes:Recipe]
 
 	String name
 	Integer rank
