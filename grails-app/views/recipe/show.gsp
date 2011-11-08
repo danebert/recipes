@@ -23,58 +23,41 @@
     </ul>
   </div>
   <div id="show-recipe" class="content scaffold-show" role="main">
-    <h1>
-      <g:message code="default.show.label" args="[entityName]" />
+    <h1 class="center">
+      <g:fieldValue bean="${recipeInstance}" field="title" />
     </h1>
     <g:if test="${flash.message}">
       <div class="message" role="status">
         ${flash.message}
       </div>
     </g:if>
-    <ol class="property-list recipe">
+    <table class="center narrow">
+      <tr>
+        <td>
+          <div class="recipeBody">
 
-      <g:if test="${recipeInstance?.title}">
-        <li class="fieldcontain"><span id="title-label" class="property-label"><g:message
-              code="recipe.title.label" default="Title" /></span> <span class="property-value"
-          aria-labelledby="title-label"><g:fieldValue bean="${recipeInstance}" field="title" /></span>
+            <g:fieldValue bean="${recipeInstance}" field="body" />
 
-        </li>
-      </g:if>
+          </div>
 
-      <g:if test="${recipeInstance?.body}">
-        <li class="fieldcontain"><span id="body-label" class="property-label"><g:message
-              code="recipe.body.label" default="Body" /></span> <span class="property-value"
-          aria-labelledby="body-label"><g:fieldValue bean="${recipeInstance}" field="body" /></span>
+        </td>
+      </tr>
+    </table>
+    <div class="category center">
+      <g:link controller="category" action="show" id="${recipeInstance?.category?.id}">
+        ${recipeInstance?.category?.name}
+      </g:link> : 
+    <g:if test="${recipeInstance?.subCategory}">
+        <g:link controller="subCategory" action="show" id="${recipeInstance?.subCategory?.id}">
+          ${recipeInstance?.subCategory?.name}
+        </g:link>
+    </g:if>
+    </div>
 
-        </li>
-      </g:if>
+    <div class="dateCreated center">
+      Added on <g:formatDate format="yyyy-MM-dd" date="${recipeInstance?.dateCreated}" />
+    </div>
 
-      <g:if test="${recipeInstance?.category}">
-        <li class="fieldcontain"><span id="category-label" class="property-label"><g:message
-              code="recipe.category.label" default="Category" /></span> <span class="property-value"
-          aria-labelledby="category-label"><g:link controller="category" action="show"
-              id="${recipeInstance?.category?.id}">
-              ${recipeInstance?.category?.name}
-            </g:link></span></li>
-      </g:if>
-
-
-      <g:if test="${recipeInstance?.subCategory}">
-        <li class="fieldcontain"><span id="subCategory-label" class="property-label"><g:message
-              code="recipe.subCategory.label" default="Sub Category" /></span> <span
-          class="property-value" aria-labelledby="subCategory-label"><g:link
-              controller="subCategory" action="show" id="${recipeInstance?.subCategory?.id}">
-              ${recipeInstance?.subCategory?.name}
-            </g:link></span></li>
-      </g:if>
-
-      <g:if test="${recipeInstance?.dateCreated}">
-        <li class="fieldcontain"><span id="dateCreated-label" class="property-label"><g:message
-              code="recipe.dateCreated.label" default="Created Date" /></span> <span
-          class="property-value" aria-labelledby="dateCreated-label"><g:formatDate
-              date="${recipeInstance?.dateCreated}" /></span></li>
-      </g:if>
-    </ol>
     <g:form>
       <fieldset class="buttons">
         <g:hiddenField name="id" value="${recipeInstance?.id}" />
