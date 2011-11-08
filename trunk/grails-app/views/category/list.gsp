@@ -52,7 +52,7 @@
               ${fieldValue(bean: categoryInstance, field: "rank")}
             </td>
             <td><g:each in="${categoryInstance.subCategories}" var="subCategoryInstance">
-                <g:link controller="subCategory" action="show" id="${subCategoryInstance.id}">
+                 ${fieldValue(bean: subCategoryInstance, field: "rank")} <g:link controller="subCategory" action="show" id="${subCategoryInstance.id}">
                   ${fieldValue(bean: subCategoryInstance, field: "name")}
                 </g:link>
                 <br />
