@@ -37,7 +37,7 @@
 
           <g:sortableColumn property="rank"
             title="${message(code: 'category.rank.label', default: 'Rank')}" />
-
+          <th>SubCategories</th>
         </tr>
       </thead>
       <tbody>
@@ -51,7 +51,12 @@
             <td>
               ${fieldValue(bean: categoryInstance, field: "rank")}
             </td>
-
+            <td><g:each in="${categoryInstance.subCategories}" var="subCategoryInstance">
+                <g:link controller="subCategory" action="show" id="${subCategoryInstance.id}">
+                  ${fieldValue(bean: subCategoryInstance, field: "name")}
+                </g:link>
+                <br />
+              </g:each></td>
           </tr>
         </g:each>
       </tbody>

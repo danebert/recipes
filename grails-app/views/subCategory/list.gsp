@@ -35,10 +35,10 @@
           <g:sortableColumn property="name"
             title="${message(code: 'subCategory.name.label', default: 'Name')}" />
 
-          <th><g:message code="subCategory.category.label" default="Category" /></th>
-
-          <g:sortableColumn property="rank"
-            title="${message(code: 'subCategory.rank.label', default: 'Rank')}" />
+          <g:sortableColumn property="name"
+            title="${message(code: 'subCategory.category.label', default: 'Category')}" />
+            
+          <th><g:message code="subCategory.rank.label" default="Rank" /></th>
 
         </tr>
       </thead>
