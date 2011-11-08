@@ -34,12 +34,12 @@
 	<g:select id="subCategory" name="subCategory.id" from="${com.mathin.recipes.SubCategory.list()}" optionKey="id" optionValue="name" required="" value="${recipeInstance?.subCategory?.id}" class="many-to-one"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: recipeInstance, field: 'createdDate', 'error')} required">
-	<label for="createdDate">
-		<g:message code="recipe.createdDate.label" default="Created Date" />
+<div class="fieldcontain ${hasErrors(bean: recipeInstance, field: 'dateCreated', 'error')} required">
+	<label for="dateCreated">
+		<g:message code="recipe.dateCreated.label" default="Created Date" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:datePicker name="createdDate" precision="day"  value="${recipeInstance?.createdDate}"  />
+	<g:datePicker name="dateCreated" precision="day"  value="${recipeInstance?.dateCreated}"  />
 </div>
 
 

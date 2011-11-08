@@ -60,11 +60,11 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${recipeInstance?.createdDate}">
+				<g:if test="${recipeInstance?.dateCreated}">
 				<li class="fieldcontain">
-					<span id="createdDate-label" class="property-label"><g:message code="recipe.createdDate.label" default="Created Date" /></span>
+					<span id="dateCreated-label" class="property-label"><g:message code="recipe.dateCreated.label" default="Created Date" /></span>
 					
-						<span class="property-value" aria-labelledby="createdDate-label"><g:formatDate date="${recipeInstance?.createdDate}" /></span>
+						<span class="property-value" aria-labelledby="dateCreated-label"><g:formatDate date="${recipeInstance?.dateCreated}" /></span>
 					
 				</li>
 				</g:if>
