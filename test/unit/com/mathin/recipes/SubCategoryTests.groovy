@@ -11,7 +11,17 @@ import org.junit.*
 @TestFor(SubCategory)
 class SubCategoryTests {
 
-    void testSomething() {
-       fail "Implement me"
-    }
+	void testCompareTo() {
+		Category salad = new Category(name:"Salad",rank:1)
+
+		SubCategory pasta = new SubCategory(name:"Pasta",rank:2, category:salad)
+		SubCategory green = new SubCategory(name:"Green",rank:1, category:salad)
+
+		SortedSet set = new TreeSet();
+		set.add(pasta);
+		set.add(green);
+
+		assertEquals(green,set.first());
+		assertEquals(pasta,set.last());
+	}
 }

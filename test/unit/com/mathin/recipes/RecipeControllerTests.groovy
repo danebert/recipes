@@ -11,7 +11,7 @@ import org.junit.*
 @TestFor(RecipeController)
 class RecipeControllerTests {
 
-    void testSomething() {
+    void testCategorySet() {
        fail "Implement me"
     }
 }

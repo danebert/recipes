@@ -1,7 +1,7 @@
 package com.mathin.recipes
 
 class Recipe {
-
+	
 	String title
 	String body
 	Category category
