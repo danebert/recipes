@@ -1,7 +1,5 @@
 <%@ page import="com.mathin.recipes.Recipe"%>
 
-
-
 <div class="fieldcontain ${hasErrors(bean: recipeInstance, field: 'title', 'error')} required">
   <label for="title"> <g:message code="recipe.title.label" default="Title" /> <span
     class="required-indicator">*</span>
@@ -32,13 +30,6 @@
   <g:select id="subCategory" name="subCategory.id" from="${com.mathin.recipes.SubCategory.list()}"
     optionKey="id" optionValue="name" required="" value="${recipeInstance?.subCategory?.id}"
     class="many-to-one" />
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: recipeInstance, field: 'dateCreated', 'error')} required">
-  <label for="dateCreated"> <g:message code="recipe.dateCreated.label"
-      default="Created Date" /> <span class="required-indicator">*</span>
-  </label>
-  <g:datePicker name="dateCreated" precision="day" value="${recipeInstance?.dateCreated}" />
 </div>
 
 
