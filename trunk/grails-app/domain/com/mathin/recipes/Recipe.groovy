@@ -14,7 +14,11 @@ class Recipe {
 		category(blank:false)
 	}
 	
-	def beforeInsert() {
-		dateCreated = new Date()
+	static mapping ={
+		body type: 'text'
+	}
+
+		def beforeInsert() {
+			dateCreated = new Date()
 	}
 }

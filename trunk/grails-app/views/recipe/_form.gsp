@@ -11,7 +11,7 @@
   <label for="body"> <g:message code="recipe.body.label" default="Body" /> <span
     class="required-indicator">*</span>
   </label>
-  <g:textArea name="body" required="" value="${recipeInstance?.body}" />
+  <g:textArea name="body" required="" value="${recipeInstance?.body}" rows="50" columns="80"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: recipeInstance, field: 'category', 'error')} required">
