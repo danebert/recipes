@@ -33,9 +33,7 @@
     </ul>
   </div>
   <div id="list-recipe" class="content scaffold-list" role="main">
-    <h1>
-      Recipes
-    </h1>
+    <h1>Recipes</h1>
     <g:if test="${flash.message}">
       <div class="message" role="status">
         ${flash.message}
@@ -44,27 +42,29 @@
     <div class="indent">
       <g:each in="${categoryInstanceList}" var="categoryInstance">
         <h2>
-          ${fieldValue(bean: categoryInstance, field: "name")}
+          <a href="#" onclick="switchMenu('cat_${categoryInstance.id}');"> 
+            ${fieldValue(bean: categoryInstance, field: "name")}
+          </a>
         </h2>
-        <div class="indent">
-        <g:each in="${categoryInstance.subCategories}" var="subCategoryInstance">
-          <h3>
-            <a href="#" onclick="switchMenu('sub_${subCategoryInstance.id}');">
-              ${fieldValue(bean: subCategoryInstance, field: "name")}
-            </a>
-          </h3>
-          <div id="sub_${subCategoryInstance.id}" style="display: none">
-            <table>
-              <g:each in="${subCategoryInstance.recipes}" status="ri" var="recipeInstance">
-                <tr class="${(ri % 2) == 0 ? 'even' : 'odd'}">
-                  <td><g:link action="show" id="${recipeInstance.id}">
-                      ${fieldValue(bean: recipeInstance, field: "title")}
-                    </g:link></td>
-                </tr>
-              </g:each>
-            </table>
-          </div>
-        </g:each>
+        <div id="cat_${categoryInstance.id}" style="display: none" class="indent">
+          <g:each in="${categoryInstance.subCategories}" var="subCategoryInstance">
+            <h3>
+              <a href="#" onclick="switchMenu('sub_${subCategoryInstance.id}');">
+                ${fieldValue(bean: subCategoryInstance, field: "name")}
+              </a>
+            </h3>
+            <div id="sub_${subCategoryInstance.id}" style="display: none">
+              <table>
+                <g:each in="${subCategoryInstance.recipes}" status="ri" var="recipeInstance">
+                  <tr class="${(ri % 2) == 0 ? 'even' : 'odd'}">
+                    <td><g:link action="show" id="${recipeInstance.id}">
+                        ${fieldValue(bean: recipeInstance, field: "title")}
+                      </g:link></td>
+                  </tr>
+                </g:each>
+              </table>
+            </div>
+          </g:each>
         </div>
       </g:each>
     </div>
