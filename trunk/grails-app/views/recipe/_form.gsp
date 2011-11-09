@@ -23,12 +23,12 @@
     class="many-to-one" />
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: recipeInstance, field: 'subCategory', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: recipeInstance, field: 'subCategory', 'error')} ">
   <label for="subCategory"> <g:message code="recipe.subCategory.label"
-      default="Sub Category" /> <span class="required-indicator">*</span>
+      default="Sub Category" /> 
   </label>
   <g:select id="subCategory" name="subCategory.id" from="${com.mathin.recipes.SubCategory.list()}"
-    optionKey="id" optionValue="name" required="" value="${recipeInstance?.subCategory?.id}"
+    optionKey="id" optionValue="name" required="false" value="${recipeInstance?.subCategory?.id}" noSelection="${['null':'None'] }"
     class="many-to-one" />
 </div>
 
