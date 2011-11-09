@@ -42,15 +42,29 @@
     <div class="indent">
       <g:each in="${categoryInstanceList}" var="categoryInstance">
         <h2>
-          <a href="#" onclick="switchMenu('cat_${categoryInstance.id}');"> 
-            ${fieldValue(bean: categoryInstance, field: "name")}
+          <a href="#" onclick="switchMenu('cat_${categoryInstance.id}');"> ${fieldValue(bean: categoryInstance, field: "name")}
           </a>
         </h2>
         <div id="cat_${categoryInstance.id}" style="display: none" class="indent">
+          <h3>
+            <a href="#" onclick="switchMenu('nosub_${categoryInstance.id}');">unsubcat</a>
+          </h3>
+          <div id="nosub_${categoryInstance.id}" style="display: none">
+            <table>
+              <g:each in="${categoryInstance.recipes}" status="ri" var="recipeInstance">
+                <g:if test="${!recipeInstance.subCategory}">
+                  <tr class="${(ri % 2) == 0 ? 'even' : 'odd'}">
+                    <td><g:link action="show" id="${recipeInstance.id}">
+                        ${fieldValue(bean: recipeInstance, field: "title")}
+                      </g:link></td>
+                  </tr>
+                </g:if>
+              </g:each>
+            </table>
+          </div>
           <g:each in="${categoryInstance.subCategories}" var="subCategoryInstance">
             <h3>
-              <a href="#" onclick="switchMenu('sub_${subCategoryInstance.id}');">
-                ${fieldValue(bean: subCategoryInstance, field: "name")}
+              <a href="#" onclick="switchMenu('sub_${subCategoryInstance.id}');"> ${fieldValue(bean: subCategoryInstance, field: "name")}
               </a>
             </h3>
             <div id="sub_${subCategoryInstance.id}" style="display: none">

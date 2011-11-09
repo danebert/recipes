@@ -1,8 +1,9 @@
 package com.mathin.recipes
 
 class Category implements Comparable {
-	SortedSet subCategories
-	static hasMany = [subCategories: SubCategory]
+	SortedSet<SubCategory> subCategories
+	
+	static hasMany = [subCategories: SubCategory, recipes: Recipe]
 	
 	String name
 	Integer rank
