@@ -12,6 +12,7 @@ class Recipe {
 		title(blank:false)
 		body(blank:false)
 		category(blank:false)
+		subCategory(nullable:true)
 	}
 	
 	static mapping ={
