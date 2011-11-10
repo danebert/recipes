@@ -29,12 +29,11 @@
             };
         }
     }
-
     
     // This is called when the page loads to initialize subCategories
     var zselect = document.getElementById('category')
     var zopt = zselect.options[zselect.selectedIndex]
-    ${remoteFunction(controller:"category", action:"ajaxGetSubCategories", params:"'id=' + zopt.value", onSuccess:"updateSubCategories(data)")}
+    ${remoteFunction(controller:"ajax", action:"getSubCategories", params:"'id=' + zopt.value", onSuccess:"updateSubCategories(data)")}
 </g:javascript>
 
 <div class="fieldcontain ${hasErrors(bean: recipeInstance, field: 'title', 'error')} required">
@@ -59,8 +58,8 @@
     optionKey="id" optionValue="name" required="" value="${recipeInstance?.category?.id}"
     class="many-to-one"
     onchange="${remoteFunction(
-            controller:'category', 
-            action:'ajaxGetSubCategories', 
+            controller:'ajax', 
+            action:'getSubCategories', 
             params:'\'id=\' + escape(this.value)',
             onSuccess:'updateSubCategories(data)')}" />
 </div>
