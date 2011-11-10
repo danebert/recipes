@@ -1,3 +1,6 @@
+import com.mathin.SecRole
+import com.mathin.SecUser
+import com.mathin.SecUserSecRole
 import com.mathin.recipes.Category
 import com.mathin.recipes.Recipe
 import com.mathin.recipes.SubCategory
@@ -5,6 +8,28 @@ import com.mathin.recipes.SubCategory
 class BootStrap {
 
 	def init = { servletContext ->
+
+		def userRole = SecRole.findByAuthority('ROLE_USER') ?: new SecRole(authority: 'ROLE_USER').save(failOnError: true)
+		def adminRole = SecRole.findByAuthority('ROLE_ADMIN') ?: new SecRole(authority: 'ROLE_ADMIN').save(failOnError: true)
+
+		def normalUser = SecUser.findByUsername('normal') ?: new SecUser(
+				username: 'normal',
+				password: 'normal',
+				enabled: true).save(failOnError: true)
+
+		if (!normalUser.authorities.contains(userRole)) {
+			SecUserSecRole.create normalUser, userRole
+		}
+
+		def adminUser = SecUser.findByUsername('admin') ?: new SecUser(
+				username: 'admin',
+				password: 'nimda',
+				enabled: true).save(failOnError: true)
+
+		if (!adminUser.authorities.contains(adminRole)) {
+			SecUserSecRole.create adminUser, adminRole
+		}
+
 
 		if( !Recipe.count() ){
 			Category mainDish = new Category(name:"Main Dish", rank:2).save(failOnError: true)
