@@ -6,6 +6,9 @@ class SubCategory implements Comparable {
 	String name
 	Integer rank
 	Category category
+
+	static belongsTo = [category: Category]
+
 	static constraints = {
 		name(blank: false)
 		category(blank: false)

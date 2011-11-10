@@ -1,4 +1,41 @@
 <%@ page import="com.mathin.recipes.Recipe"%>
+<g:javascript library="jquery" />
+<g:javascript>
+    function updateSubCategories(data) {
+       // The response comes back as a bunch-o-JSON
+        if (data) {
+            var rselect = document.getElementById('subCategory')
+
+            // Clear all previous options
+            var l = rselect.length
+
+            while (l > 0) {
+                l--
+                rselect.remove(l)
+            }
+
+            // Rebuild the select
+            for (i in data){
+                item = data[i];
+                var opt = document.createElement('option');
+                opt.text = item.name
+                opt.value = item.id
+                try {
+                    rselect.add(opt, null) // standards compliant; doesn't work in IE
+                }
+                catch(ex) {
+                    rselect.add(opt) // IE only
+                }
+            };
+        }
+    }
+
+    
+    // This is called when the page loads to initialize subCategories
+    var zselect = document.getElementById('category')
+    var zopt = zselect.options[zselect.selectedIndex]
+    ${remoteFunction(controller:"category", action:"ajaxGetSubCategories", params:"'id=' + zopt.value", onSuccess:"updateSubCategories(data)")}
+</g:javascript>
 
 <div class="fieldcontain ${hasErrors(bean: recipeInstance, field: 'title', 'error')} required">
   <label for="title"> <g:message code="recipe.title.label" default="Title" /> <span
@@ -11,7 +48,7 @@
   <label for="body"> <g:message code="recipe.body.label" default="Body" /> <span
     class="required-indicator">*</span>
   </label>
-  <g:textArea name="body" required="" value="${recipeInstance?.body}" rows="50" columns="80"/>
+  <g:textArea name="body" required="" value="${recipeInstance?.body}" rows="50" columns="80" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: recipeInstance, field: 'category', 'error')} required">
@@ -20,16 +57,20 @@
   </label>
   <g:select id="category" name="category.id" from="${com.mathin.recipes.Category.list()}"
     optionKey="id" optionValue="name" required="" value="${recipeInstance?.category?.id}"
-    class="many-to-one" />
+    class="many-to-one"
+    onchange="${remoteFunction(
+            controller:'category', 
+            action:'ajaxGetSubCategories', 
+            params:'\'id=\' + escape(this.value)',
+            onSuccess:'updateSubCategories(data)')}" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: recipeInstance, field: 'subCategory', 'error')} ">
   <label for="subCategory"> <g:message code="recipe.subCategory.label"
-      default="Sub Category" /> 
+      default="Sub Category" />
   </label>
-  <g:select id="subCategory" name="subCategory.id" from="${com.mathin.recipes.SubCategory.list()}"
-    optionKey="id" optionValue="name" required="false" value="${recipeInstance?.subCategory?.id}" noSelection="${['null':'None'] }"
-    class="many-to-one" />
+  <g:select id="subCategory" name="subCategory.id" from="${subCategories}"
+    optionKey="id" optionValue="name" required="false" />
 </div>
 
 

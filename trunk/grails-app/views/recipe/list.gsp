@@ -7,7 +7,8 @@
 <g:set var="entityName" value="${message(code: 'recipe.label', default: 'Recipe')}" />
 <title><g:message code="default.list.label" args="[entityName]" /></title>
 
-<script type="text/javascript">function switchMenu(obj) {
+<script type="text/javascript">
+function switchMenu(obj) {
   var el = document.getElementById(obj);
   if ( el.style.display != "none" ) {
     el.style.display = 'none';

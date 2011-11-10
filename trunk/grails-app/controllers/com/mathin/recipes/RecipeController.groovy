@@ -1,6 +1,5 @@
 package com.mathin.recipes
 
-import java.util.SortedSet;
 
 class RecipeController {
 	static scaffold = true
