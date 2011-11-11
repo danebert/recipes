@@ -54,7 +54,7 @@
   <label for="category"> <g:message code="recipe.category.label" default="Category" /> <span
     class="required-indicator">*</span>
   </label>
-  <g:select id="category" name="category.id" from="${com.mathin.recipes.Category.list()}"
+  <g:select id="category" name="category.id" from="${categoryInstanceList}"
     optionKey="id" optionValue="name" required="" value="${recipeInstance?.category?.id}"
     class="many-to-one"
     onchange="${remoteFunction(
