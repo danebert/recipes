@@ -48,7 +48,7 @@ function switchMenu(obj) {
         </h2>
         <div id="cat_${categoryInstance.id}" style="display: none" class="indent">
           <h3>
-            <a href="#" onclick="switchMenu('nosub_${categoryInstance.id}');">unsubcat</a>
+            <a href="#" onclick="switchMenu('nosub_${categoryInstance.id}');">Uncategorized</a>
           </h3>
           <div id="nosub_${categoryInstance.id}" style="display: none">
             <table>

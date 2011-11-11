@@ -37,8 +37,11 @@
 
           <g:sortableColumn property="name"
             title="${message(code: 'subCategory.name.label', default: 'Sub Category')}" />
-            
+
           <th><g:message code="subCategory.rank.label" default="Rank" /></th>
+
+          <g:sortableColumn property="owner"
+            title="${message(code: 'subCategory.owner.label', default: 'Owner')}" />
 
         </tr>
       </thead>
@@ -57,7 +60,11 @@
             <td>
               ${fieldValue(bean: subCategoryInstance, field: "rank")}
             </td>
-
+            
+            <td>
+              ${fieldValue(bean: subCategoryInstance, field: "owner.username")}
+            </td>
+            
           </tr>
         </g:each>
       </tbody>
