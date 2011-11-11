@@ -22,7 +22,7 @@ class RecipeController {
 		def recipe = Recipe.get(params.id)
 
 		[
-					subRecipe: recipe,
+					recipeInstance: recipe,
 					categoryInstanceList: Category.findAllByOwner(recipe.owner)
 				]
 	}
