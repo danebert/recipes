@@ -35,7 +35,9 @@
       <tr>
         <td>
           <div class="recipeBody">
-            <g:addLineBreaks><g:fieldValue bean="${recipeInstance}" field="body" /></g:addLineBreaks>
+            <g:addLineBreaks>
+              <g:fieldValue bean="${recipeInstance}" field="body" />
+            </g:addLineBreaks>
           </div>
 
         </td>
@@ -44,16 +46,20 @@
     <div class="category center">
       <g:link controller="category" action="show" id="${recipeInstance?.category?.id}">
         ${recipeInstance?.category?.name}
-      </g:link> : 
-    <g:if test="${recipeInstance?.subCategory}">
+      </g:link>
+      :
+      <g:if test="${recipeInstance?.subCategory}">
         <g:link controller="subCategory" action="show" id="${recipeInstance?.subCategory?.id}">
           ${recipeInstance?.subCategory?.name}
         </g:link>
-    </g:if>
+      </g:if>
     </div>
 
     <div class="dateCreated center">
-      Added on <g:formatDate format="yyyy-MM-dd" date="${recipeInstance?.dateCreated}" />
+      Added on
+      <g:formatDate format="yyyy-MM-dd" date="${recipeInstance?.dateCreated}" />
+      by
+      ${recipeInstance?.owner.username}
     </div>
 
     <g:form>

@@ -16,9 +16,7 @@ class SecUser {
 		password blank: false
 	}
 
-	static mapping = {
-		password column: '`password`'
-	}
+	static mapping = { password column: '`password`' }
 
 	Set<SecRole> getAuthorities() {
 		SecUserSecRole.findAllBySecUser(this).collect { it.secRole } as Set

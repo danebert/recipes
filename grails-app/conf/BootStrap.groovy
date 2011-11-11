@@ -32,24 +32,24 @@ class BootStrap {
 
 
 		if( !Recipe.count() ){
-			Category mainDish = new Category(name:"Main Dish", rank:2).save(failOnError: true)
-			Category salad = new Category(name:"Salad",rank:1).save(failOnError: true)
+			Category mainDish = new Category(name:"Main Dish", rank:2, owner:normalUser).save(failOnError: true)
+			Category salad = new Category(name:"Salad", rank:1, owner:normalUser).save(failOnError: true)
 
-			SubCategory beef = new SubCategory(name:"Beef",rank:3, category:mainDish).save(failOnError: true)
-			SubCategory chicken = new SubCategory(name:"Chicken",rank:1, category:mainDish).save(failOnError: true)
-			SubCategory veggie = new SubCategory(name:"Vegetarian",rank:2, category:mainDish).save(failOnError: true)
+			SubCategory beef = new SubCategory(name:"Beef", rank:3, category:mainDish, owner:normalUser).save(failOnError: true)
+			SubCategory chicken = new SubCategory(name:"Chicken", rank:1, category:mainDish, owner:normalUser).save(failOnError: true)
+			SubCategory veggie = new SubCategory(name:"Vegetarian", rank:2, category:mainDish, owner:normalUser).save(failOnError: true)
 
-			SubCategory pasta = new SubCategory(name:"Pasta",rank:2, category:salad).save(failOnError: true)
-			SubCategory green = new SubCategory(name:"Green",rank:1, category:salad).save(failOnError: true)
+			SubCategory pasta = new SubCategory(name:"Pasta", rank:2, category:salad, owner:normalUser).save(failOnError: true)
+			SubCategory green = new SubCategory(name:"Green", rank:1, category:salad, owner:normalUser).save(failOnError: true)
 
-			Recipe cobbSalad = new Recipe(title:"Cobb Salad", body:"Lettuce\nBacon\nBleu",category:salad, subCategory:green).save(failOnError: true)
-			Recipe ceasarSalad = new Recipe(title:"Ceasar Salad", body:"Lettuce\nCrouton\nParm", category:salad, subCategory:green).save(failOnError: true)
-			Recipe penneSalad = new Recipe(title:"Penne Salad", body:"Penne\nBasil", category:salad, subCategory:pasta).save(failOnError: true)
+			Recipe cobbSalad = new Recipe(owner:normalUser, title:"Cobb Salad", body:"Lettuce\nBacon\nBleu", category:salad, subCategory:green).save(failOnError: true)
+			Recipe ceasarSalad = new Recipe(owner:normalUser, title:"Ceasar Salad", body:"Lettuce\nCrouton\nParm", category:salad, subCategory:green).save(failOnError: true)
+			Recipe penneSalad = new Recipe(owner:normalUser, title:"Penne Salad", body:"Penne\nBasil", category:salad, subCategory:pasta).save(failOnError: true)
 
-			Recipe potRoast = new Recipe(title:"Pot Roast", body:"Roast\nCarrots\nPotatoes", category:mainDish, subCategory:beef).save(failOnError: true)
+			Recipe potRoast = new Recipe(owner:normalUser, title:"Pot Roast", body:"Roast\nCarrots\nPotatoes", category:mainDish, subCategory:beef).save(failOnError: true)
 
-			Recipe noSub = new Recipe(title:"NoSubRecipe", body:"This\nrecipe\nhas\nno\nSubCategory", category:mainDish).save(failOnError: true)
-			Recipe largeRecipe = new Recipe(title:"Latkes- Sweet Potato-Parsnip", body:"Prep and Cook Time: 1 hour, 10 minutes. Notes: See \"Tips for Terrific Latkes,\" below. \r\n" +
+			Recipe noSub = new Recipe(owner:normalUser, title:"NoSubRecipe", body:"This\nrecipe\nhas\nno\nSubCategory", category:mainDish).save(failOnError: true)
+			Recipe largeRecipe = new Recipe(owner:normalUser, title:"Latkes- Sweet Potato-Parsnip", body:"Prep and Cook Time: 1 hour, 10 minutes. Notes: See \"Tips for Terrific Latkes,\" below. \r\n" +
 					"\r\n" +
 					"\r\n" +
 					"2 pounds Garnet sweet potatoes (often labeled \"yams\"), rinsed and peeled \r\n" +

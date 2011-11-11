@@ -48,6 +48,14 @@
 
         </li>
       </g:if>
+      
+       <g:if test="${categoryInstance?.owner}">
+        <li class="fieldcontain"><span id="owner-label" class="property-label"><g:message
+              code="category.owner.label" default="Owner" /></span> <span class="property-value"
+          aria-labelledby="rank-label"><g:fieldValue bean="${categoryInstance}" field="owner.username" /></span>
+
+        </li>
+      </g:if>
 
     </ol>
     <g:form>

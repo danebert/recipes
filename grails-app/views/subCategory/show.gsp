@@ -56,6 +56,13 @@
               field="rank" /></span></li>
       </g:if>
 
+      <g:if test="${subCategoryInstance?.owner}">
+        <li class="fieldcontain"><span id="owner-label" class="property-label"><g:message
+              code="subCategory.owner.label" default="Owner" /></span> <span class="property-value"
+          aria-labelledby="rank-label"><g:fieldValue bean="${subCategoryInstance}"
+              field="owner.username" /></span></li>
+      </g:if>
+
     </ol>
     <g:form>
       <fieldset class="buttons">

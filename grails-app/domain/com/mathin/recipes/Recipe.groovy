@@ -1,12 +1,18 @@
 package com.mathin.recipes
 
+import com.mathin.SecUser
+
 class Recipe {
-	
+
+	transient springSecurityService
+
 	String title
 	String body
 	Category category
 	SubCategory subCategory
 	Date dateCreated
+
+	SecUser owner
 
 	static constraints = {
 		title(blank:false)
@@ -14,12 +20,19 @@ class Recipe {
 		category(blank:false)
 		subCategory(nullable:true)
 	}
-	
-	static mapping ={
-		body type: 'text'
+
+	static mapping ={ body type: 'text' }
+
+	def beforeValidate() {
+		if(!owner) {
+			owner = springSecurityService.currentUser
+		}
 	}
 
-		def beforeInsert() {
-			dateCreated = new Date()
+	def beforeInsert() {
+		dateCreated = new Date()
+		if(!owner) {
+			owner = springSecurityService.currentUser
+		}
 	}
 }
