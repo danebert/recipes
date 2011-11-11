@@ -21,6 +21,15 @@ class BootStrap {
 			SecUserSecRole.create normalUser, userRole
 		}
 
+		def secondUser = SecUser.findByUsername('secondUser') ?: new SecUser(
+				username: 'secondUser',
+				password: 'secondUser',
+				enabled: true).save(failOnError: true)
+
+		if (!secondUser.authorities.contains(userRole)) {
+			SecUserSecRole.create secondUser, userRole
+		}
+
 		def adminUser = SecUser.findByUsername('admin') ?: new SecUser(
 				username: 'admin',
 				password: 'nimda',
@@ -34,6 +43,7 @@ class BootStrap {
 		if( !Recipe.count() ){
 			Category mainDish = new Category(name:"Main Dish", rank:2, owner:normalUser).save(failOnError: true)
 			Category salad = new Category(name:"Salad", rank:1, owner:normalUser).save(failOnError: true)
+			Category soup = new Category(name:"Soup", rank:1, owner:secondUser).save(failOnError: true)
 
 			SubCategory beef = new SubCategory(name:"Beef", rank:3, category:mainDish, owner:normalUser).save(failOnError: true)
 			SubCategory chicken = new SubCategory(name:"Chicken", rank:1, category:mainDish, owner:normalUser).save(failOnError: true)
