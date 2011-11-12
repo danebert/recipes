@@ -5,7 +5,9 @@
 <head>
 <meta name="layout" content="main">
 <g:set var="entityName" value="${message(code: 'recipe.label', default: 'Recipe')}" />
-<title>${recipeInstance.title}</title>
+<title>
+  ${recipeInstance.title}
+</title>
 </head>
 <body>
   <a href="#show-recipe" class="skip" tabindex="-1"><g:message code="default.link.skip.label"
@@ -61,18 +63,19 @@
       by
       ${recipeInstance?.owner.username}
     </div>
-
-    <g:form>
-      <fieldset class="buttons">
-        <g:hiddenField name="id" value="${recipeInstance?.id}" />
-        <g:link class="edit" action="edit" id="${recipeInstance?.id}">
-          <g:message code="default.button.edit.label" default="Edit" />
-        </g:link>
-        <g:actionSubmit class="delete" action="delete"
-          value="${message(code: 'default.button.delete.label', default: 'Delete')}"
-          onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-      </fieldset>
-    </g:form>
+    <sec:ifLoggedIn>
+      <g:form>
+        <fieldset class="buttons">
+          <g:hiddenField name="id" value="${recipeInstance?.id}" />
+          <g:link class="edit" action="edit" id="${recipeInstance?.id}">
+            <g:message code="default.button.edit.label" default="Edit" />
+          </g:link>
+          <g:actionSubmit class="delete" action="delete"
+            value="${message(code: 'default.button.delete.label', default: 'Delete')}"
+            onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+        </fieldset>
+      </g:form>
+    </sec:ifLoggedIn>
   </div>
 </body>
 </html>

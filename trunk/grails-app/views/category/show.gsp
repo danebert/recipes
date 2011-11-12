@@ -48,27 +48,28 @@
 
         </li>
       </g:if>
-      
-       <g:if test="${categoryInstance?.owner}">
+
+      <g:if test="${categoryInstance?.owner}">
         <li class="fieldcontain"><span id="owner-label" class="property-label"><g:message
               code="category.owner.label" default="Owner" /></span> <span class="property-value"
-          aria-labelledby="rank-label"><g:fieldValue bean="${categoryInstance}" field="owner.username" /></span>
-
-        </li>
+          aria-labelledby="rank-label"><g:fieldValue bean="${categoryInstance}"
+              field="owner.username" /></span></li>
       </g:if>
 
     </ol>
-    <g:form>
-      <fieldset class="buttons">
-        <g:hiddenField name="id" value="${categoryInstance?.id}" />
-        <g:link class="edit" action="edit" id="${categoryInstance?.id}">
-          <g:message code="default.button.edit.label" default="Edit" />
-        </g:link>
-        <g:actionSubmit class="delete" action="delete"
-          value="${message(code: 'default.button.delete.label', default: 'Delete')}"
-          onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-      </fieldset>
-    </g:form>
+    <sec:ifLoggedIn>
+      <g:form>
+        <fieldset class="buttons">
+          <g:hiddenField name="id" value="${categoryInstance?.id}" />
+          <g:link class="edit" action="edit" id="${categoryInstance?.id}">
+            <g:message code="default.button.edit.label" default="Edit" />
+          </g:link>
+          <g:actionSubmit class="delete" action="delete"
+            value="${message(code: 'default.button.delete.label', default: 'Delete')}"
+            onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+        </fieldset>
+      </g:form>
+    </sec:ifLoggedIn>
   </div>
 </body>
 </html>
