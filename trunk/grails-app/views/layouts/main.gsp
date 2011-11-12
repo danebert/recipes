@@ -22,11 +22,20 @@
 </head>
 <body>
   <div id="grailsLogo" role="banner">
-    <a href="http://grails.org"><img src="${resource(dir: 'images', file: 'grails_logo.png')}"
-      alt="Grails" /></a>
+    <h1 class="floatLeft">Recipes Logo here</h1>
+    <div class="right">
+      <sec:ifLoggedIn>
+       Hello, <sec:loggedInUserInfo field="username"/>. <a href="/recipes/logout/index">Log out</a>
+      </sec:ifLoggedIn>
+      <sec:ifNotLoggedIn>
+        <g:link controller='login' action='auth'>Login</g:link>
+      </sec:ifNotLoggedIn>
+    </div>
   </div>
   <g:layoutBody />
-  <div class="footer" role="contentinfo"></div>
+  <div class="footer" role="contentinfo">
+    <img src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails" />
+  </div>
   <div id="spinner" class="spinner" style="display: none;">
     <g:message code="spinner.alt" default="Loading&hellip;" />
   </div>

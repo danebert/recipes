@@ -1,4 +1,10 @@
 /* CUSTOM */
+.right{
+	text-align: right;
+}
+.floatLeft{
+    float: left;
+}
 .center {
 	text-align: center;
 }
