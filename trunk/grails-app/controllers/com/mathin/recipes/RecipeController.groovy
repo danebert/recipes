@@ -19,11 +19,19 @@ class RecipeController {
 				]
 	}
 	def edit() {
+
+		def user = springSecurityService.currentUser
+
 		def recipe = Recipe.get(params.id)
 
-		[
-					recipeInstance: recipe,
-					categoryInstanceList: Category.findAllByOwner(recipe.owner)
-				]
+		if(recipe.owner.equals(user)) {
+			[
+						recipeInstance: recipe,
+						categoryInstanceList: Category.findAllByOwner(recipe.owner)
+					]
+		} else {
+			flash.message = "You cannot edit because this is not your Recipe"
+			redirect action: show, id: recipe.id
+		}
 	}
 }

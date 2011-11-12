@@ -5,7 +5,7 @@
 <head>
 <meta name="layout" content="main">
 <g:set var="entityName" value="${message(code: 'recipe.label', default: 'Recipe')}" />
-<title><g:message code="default.show.label" args="[entityName]" /></title>
+<title>${recipeInstance.title}</title>
 </head>
 <body>
   <a href="#show-recipe" class="skip" tabindex="-1"><g:message code="default.link.skip.label"
