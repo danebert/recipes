@@ -1,7 +1,7 @@
 package com.mathin.recipes
 
 import org.springframework.dao.DataIntegrityViolationException
-
+import com.mathin.SecUser
 
 class RecipeController {
 	transient springSecurityService
@@ -9,17 +9,26 @@ class RecipeController {
 	static scaffold = true
 
 	def list() {
+		if (!params.user){
+			redirect(uri: "/")
+			return
+		}
+		def owner = SecUser.findByUsername(params.user)
+		def categories = Category.findAllByOwner(owner,[sort:"rank", order: "asc"])
+		def recipes = Recipe.findAllByOwner(owner)
 		[
-					recipeInstanceList: Recipe.list(),
-					recipeInstanceTotal: Recipe.count(),
-					categoryInstanceList: Category.list(sort:"rank", order: "asc")
+					recipeInstanceList: recipes,
+					recipeInstanceTotal: recipes.size(),
+					categoryInstanceList: categories
 				]
 	}
+	
 	def create() {
 		[
 					categoryInstanceList: Category.findAllByOwner(springSecurityService.currentUser)
 				]
 	}
+	
 	def edit() {
 
 		def user = springSecurityService.currentUser

@@ -74,20 +74,11 @@ p {
 </style>
 </head>
 <body>
-
-  <div id="controller-list" role="navigation" class="center">
-
-    <h1>
-      <a href="/recipes/recipe/list">Recipes</a>
-    </h1>
-    <h1>
-      <a href="/recipes/category/list"> Categories </a>
-    </h1>
-    <h1>
-      <a href="/recipes/subCategory/list"> SubCategories </a>
-    </h1>
-
-  </div>
-
+	<div class="center" id="users">
+		<g:each in="${users}" var="user">
+		<a href="/recipes/recipe/list?user=${user.username}">${user.username}'s Recipes</a>
+			<br />
+		</g:each>
+	</div>
 </body>
 </html>
