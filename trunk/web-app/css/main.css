@@ -1,10 +1,17 @@
 /* CUSTOM */
-.right{
+.right {
 	text-align: right;
 }
-.floatLeft{
-    float: left;
+
+.floatLeft {
+	float: left;
 }
+
+.floatRight {
+	float: right;
+	padding-right: 30px;
+}
+
 .center {
 	text-align: center;
 }
@@ -36,6 +43,10 @@ table.center {
 
 .indent {
 	padding-left: 30px;
+}
+
+.small {
+	font-size: .5em;
 }
 
 h1 {
@@ -76,8 +87,8 @@ html {
 	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #aaa),
 		color-stop(1, #ddd) );
 	background-image: linear-gradient(top, #aaa, #ddd);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=    '#aaa',
-		EndColorStr=    '#ddd' );
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=      '#aaa',
+		EndColorStr=      '#ddd' );
 	background-repeat: no-repeat;
 	height: 100%;
 	/* change the box model to exclude the padding from the calculation of 100% height (IE8+) */
@@ -473,8 +484,8 @@ th {
 	background-image: -moz-linear-gradient(top, #ffffff, #eaeaea);
 	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ffffff),
 		color-stop(1, #eaeaea) );
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=    '#ffffff',
-		EndColorStr=    '#eaeaea' );
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=      '#ffffff',
+		EndColorStr=      '#eaeaea' );
 	-ms-filter:
 		"progid:DXImageTransform.Microsoft.gradient(startColorStr='#ffffff', EndColorStr='#eaeaea')";
 	color: #666666;
