@@ -14,21 +14,29 @@ class RecipeController {
 			return
 		}
 		def owner = SecUser.findByUsername(params.user)
-		def categories = Category.findAllByOwner(owner,[sort:"rank", order: "asc"])
 		def recipes = Recipe.findAllByOwner(owner)
+
+		def categories
+		if(params.category) {
+			categories = Category.get(params.category)
+		} else {
+			categories = Category.findAllByOwner(owner,[sort:"rank", order: "asc"])
+		}
+
 		[
+					ownerInstance: owner,
 					recipeInstanceList: recipes,
 					recipeInstanceTotal: recipes.size(),
 					categoryInstanceList: categories
 				]
 	}
-	
+
 	def create() {
 		[
 					categoryInstanceList: Category.findAllByOwner(springSecurityService.currentUser)
 				]
 	}
-	
+
 	def edit() {
 
 		def user = springSecurityService.currentUser

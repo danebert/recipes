@@ -48,7 +48,9 @@ table.center {
 .small {
 	font-size: .5em;
 }
-
+.smallCaps {
+	font-variant: small-caps;
+}
 h1 {
 	color: #48802c;
 	font-weight: bold;
