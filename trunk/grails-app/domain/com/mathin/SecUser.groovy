@@ -3,7 +3,8 @@ package com.mathin
 class SecUser {
 
 	transient springSecurityService
-
+	
+	String displayName
 	String username
 	String password
 	boolean enabled
@@ -14,6 +15,7 @@ class SecUser {
 	static constraints = {
 		username blank: false, unique: true
 		password blank: false
+		displayName: blank: false
 	}
 
 	static mapping = { password column: '`password`' }

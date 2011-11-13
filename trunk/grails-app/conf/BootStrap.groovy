@@ -15,6 +15,7 @@ class BootStrap {
 		def normalUser = SecUser.findByUsername('normal') ?: new SecUser(
 				username: 'normal',
 				password: 'normal',
+				displayName: 'Normal',
 				enabled: true).save(failOnError: true)
 
 		if (!normalUser.authorities.contains(userRole)) {
@@ -24,6 +25,7 @@ class BootStrap {
 		def secondUser = SecUser.findByUsername('secondUser') ?: new SecUser(
 				username: 'secondUser',
 				password: 'secondUser',
+				displayName: 'Second User',
 				enabled: true).save(failOnError: true)
 
 		if (!secondUser.authorities.contains(userRole)) {
@@ -33,6 +35,7 @@ class BootStrap {
 		def adminUser = SecUser.findByUsername('admin') ?: new SecUser(
 				username: 'admin',
 				password: 'nimda',
+				displayName: 'Administrator',
 				enabled: true).save(failOnError: true)
 
 		if (!adminUser.authorities.contains(adminRole)) {

@@ -77,7 +77,7 @@ p {
 	<div class="center" id="users">
 		<g:each in="${users}" var="user">
 			<h1>
-				<a href="/recipes/recipe/list?user=${user.username}"> ${user.username}'s
+				<a href="/recipes/recipe/list?user=${user.username}"> ${user.displayName}'s
 					recipes
 				</a>
 			</h1>
