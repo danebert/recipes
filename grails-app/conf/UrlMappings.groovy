@@ -7,6 +7,7 @@ class UrlMappings {
 
 		"/"(controller: "overview")
 		"/status"(view:"/status")
+		"/management"(view:"/management")
 		"500"(view:'/error')
 
 		"/login/$action?"(controller: "login")

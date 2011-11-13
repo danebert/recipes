@@ -7,11 +7,26 @@ class SubCategoryController {
 
 	static scaffold = true
 
+	def list() {
+		def user = springSecurityService.currentUser
+		
+		if (!user){
+			redirect(uri: "/")
+			return
+		}
+		def subCategories = SubCategory.findAllByOwner(user)
+		[
+					subCategoryInstanceTotal: subCategories.size(),
+					subCategoryInstanceList: subCategories
+				]
+	}
+	
 	def create() {
 		[
 					categoryInstanceList: Category.findAllByOwner(springSecurityService.currentUser)
 				]
 	}
+	
 	def edit() {
 		def user = springSecurityService.currentUser
 

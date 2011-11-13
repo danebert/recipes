@@ -31,7 +31,6 @@
     <table>
       <thead>
         <tr>
-
           <g:sortableColumn property="name"
             title="${message(code: 'category.name.label', default: 'Name')}" />
 

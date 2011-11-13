@@ -119,6 +119,7 @@ grails.plugins.springsecurity.interceptUrlMap = [
 			'/subCategory/edit/*':  ['ROLE_USER'],
 			'/recipe/create':       ['ROLE_USER'],
 			'/recipe/edit/*':       ['ROLE_USER'],
+			'/management':          ['ROLE_USER'],
 			'/**':                  [
 				'IS_AUTHENTICATED_ANONYMOUSLY']
 		]

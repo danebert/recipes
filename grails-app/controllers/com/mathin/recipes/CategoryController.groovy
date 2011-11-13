@@ -7,6 +7,20 @@ class CategoryController {
 
 	static scaffold = true
 
+	def list() {
+		def user = springSecurityService.currentUser
+		
+		if (!user){
+			redirect(uri: "/")
+			return
+		}
+		def categories = Category.findAllByOwner(user)
+		[
+					categoryInstanceTotal: categories.size(),
+					categoryInstanceList: categories
+				]
+	}
+	
 	def edit() {
 
 		def user = springSecurityService.currentUser
