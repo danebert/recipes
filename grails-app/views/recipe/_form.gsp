@@ -32,7 +32,7 @@
                 var opt = document.createElement('option');
                 opt.text = item.name;
                 opt.value = item.id;
-                <g:if test="${recipeInstance.subCategory}">
+                <g:if test="${recipeInstance?.subCategory}">
                 if(item.id == ${recipeInstance?.subCategory?.id}) {
                     opt.selected=true;
                 }
