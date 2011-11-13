@@ -20,9 +20,11 @@
                 var opt = document.createElement('option');
                 opt.text = item.name
                 opt.value = item.id
-                if(item.id == ${recipeInstance.subCategory.id}) {
+                <g:if test="${recipeInstance}" >
+                if(item.id == ${recipeInstance?.subCategory?.id}) {
                     opt.selected=true;
                 }
+                </g:if>
                 try {
                     rselect.add(opt, null) // standards compliant; doesn't work in IE
                 }
