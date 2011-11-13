@@ -32,8 +32,10 @@ class RecipeController {
 	}
 
 	def create() {
+		def user = springSecurityService.currentUser
 		[
-					categoryInstanceList: Category.findAllByOwner(springSecurityService.currentUser)
+					ownerInstance: user,
+					categoryInstanceList: Category.findAllByOwner(user)
 				]
 	}
 
