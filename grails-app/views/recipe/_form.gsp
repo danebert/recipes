@@ -20,6 +20,9 @@
                 var opt = document.createElement('option');
                 opt.text = item.name
                 opt.value = item.id
+                if(item.id == ${recipeInstance.subCategory.id}) {
+                    opt.selected=true;
+                }
                 try {
                     rselect.add(opt, null) // standards compliant; doesn't work in IE
                 }
