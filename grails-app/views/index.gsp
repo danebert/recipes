@@ -76,7 +76,9 @@ p {
 <body>
 	<div class="center" id="users">
 		<g:each in="${users}" var="user">
-		<a href="/recipes/recipe/list?user=${user.username}">${user.username}'s Recipes</a>
+			<h1><a href="/recipes/recipe/list?user=${user.username}"> ${user.username}'s
+				Recipes
+			</a></h1>
 			<br />
 		</g:each>
 	</div>
