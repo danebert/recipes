@@ -65,7 +65,7 @@
       Added on
       <g:formatDate format="yyyy-MM-dd" date="${recipeInstance?.dateCreated}" />
       by
-      ${recipeInstance?.owner.username}
+      ${recipeInstance?.owner.displayName}
     </div>
     <sec:ifLoggedIn>
       <g:form>
