@@ -251,7 +251,7 @@ img {
 	text-decoration: underline;
 }
 
-.nav a.home,.nav a.list,.nav a.create {
+.nav a.home,.nav a.list,.nav a.create,.nav a.search {
 	background-position: 0.7em center;
 	background-repeat: no-repeat;
 	text-indent: 25px;
@@ -259,6 +259,10 @@ img {
 
 .nav a.home {
 	background-image: url(../images/skin/house.png);
+}
+
+.nav a.search {
+    background-image: url(../images/skin/searchicon.png);
 }
 
 .nav a.list {

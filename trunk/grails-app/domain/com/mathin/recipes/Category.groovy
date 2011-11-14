@@ -13,7 +13,10 @@ class Category implements Comparable {
 	Integer rank
 	SecUser owner
 
-	static constraints = { name(blank: false) }
+	static constraints = {
+		name(blank: false)
+		id generator:'sequence',params:[name:'seq_category']
+	}
 
 	def beforeValidate() {
 		if(!owner) {

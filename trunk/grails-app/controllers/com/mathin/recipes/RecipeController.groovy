@@ -89,4 +89,17 @@ class RecipeController {
 			redirect action: show, id: recipeInstance.id
 		}
 	}
+
+	def search() {
+		def list
+		if(params.searchValue) {
+			def value = wrapSearchParam(params.searchValue)
+			list = Recipe.findAllByTitleIlikeOrBodyIlike(value,value)
+		}
+		render(template:'/recipe/searchResults', model:[searchResults:list])
+	}
+
+	def String wrapSearchParam(String value) {
+		'%'+value+'%'
+	}
 }
