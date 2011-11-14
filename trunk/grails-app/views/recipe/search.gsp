@@ -8,12 +8,23 @@
 <g:javascript library="jquery" />
 </head>
 <body>
+  <div class="nav" role="navigation">
+    <ul>
+      <li><a class="home" href="${createLink(uri: '/')}"><g:message
+            code="default.home.label" /></a></li>
+      <li><g:link class="create" action="create" controller="recipe">
+          <g:message code="default.new.label" args="['Recipe']" />
+        </g:link></li>
+    </ul>
+  </div>
   <div>
     <br />
     <div id="searchbox" class="indent">
-      <h2>Search for:
-      <g:remoteField name="search" oncomplete="showSpinner(false);" onloading="showSpinner(true);"
-        paramName="searchValue" update="searchResults" controller="recipe" action="search" /></h2>
+      <h2>
+        Search for:
+        <g:remoteField name="search" oncomplete="showSpinner(false);" onloading="showSpinner(true);"
+          paramName="searchValue" update="searchResults" controller="recipe" action="search" />
+      </h2>
     </div>
   </div>
   <g:render template="/recipe/searchResults" />
