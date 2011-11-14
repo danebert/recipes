@@ -1,4 +1,5 @@
 /* CUSTOM */
+
 .right {
 	text-align: right;
 }
@@ -16,7 +17,7 @@
 	text-align: center;
 }
 
-table.center {
+table.center, .blockcenter {
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -46,7 +47,7 @@ table.center {
 }
 
 .small {
-	font-size: .5em;
+	font-size: .6em;
 }
 .smallCaps {
 	font-variant: small-caps;
