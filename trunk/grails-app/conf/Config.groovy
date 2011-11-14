@@ -80,7 +80,8 @@ environments {
 	}
 	production {
 		grails.logging.jul.usebridge = false
-		grails.serverURL = "http://www.changeme.com"
+		grails.serverURL = "http://www.mathin.com"
+
 	}
 }
 
@@ -120,6 +121,7 @@ grails.plugins.springsecurity.interceptUrlMap = [
 			'/recipe/create':       ['ROLE_USER'],
 			'/recipe/edit/*':       ['ROLE_USER'],
 			'/management':          ['ROLE_USER'],
+			'/dbconsole':           ['ROLE_ADMIN'],
 			'/**':                  [
 				'IS_AUTHENTICATED_ANONYMOUSLY']
 		]
