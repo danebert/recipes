@@ -3,7 +3,7 @@ package com.mathin
 class SecUser {
 
 	transient springSecurityService
-	
+
 	String displayName
 	String username
 	String password
@@ -18,7 +18,10 @@ class SecUser {
 		displayName: blank: false
 	}
 
-	static mapping = { password column: '`password`' }
+	static mapping = {
+		password column: '`password`'
+		id generator:'sequence', params:[sequence:'seq_sec_user']
+	}
 
 	Set<SecRole> getAuthorities() {
 		SecUserSecRole.findAllBySecUser(this).collect { it.secRole } as Set
