@@ -21,7 +21,10 @@ class Recipe {
 		subCategory(nullable:true)
 	}
 
-	static mapping ={ body type: 'text' }
+	static mapping ={
+		body type: 'text'
+		id generator:'sequence', params:[sequence:'seq_recipe']
+	}
 
 	def beforeValidate() {
 		if(!owner) {
