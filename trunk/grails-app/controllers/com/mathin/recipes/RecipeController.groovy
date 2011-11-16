@@ -14,7 +14,6 @@ class RecipeController {
 			return
 		}
 		def owner = SecUser.findByUsername(params.user)
-		def recipes = Recipe.findAllByOwner(owner)
 
 		def categories
 		if(params.category) {
@@ -25,8 +24,6 @@ class RecipeController {
 
 		[
 					ownerInstance: owner,
-					recipeInstanceList: recipes,
-					recipeInstanceTotal: recipes.size(),
 					categoryInstanceList: categories
 				]
 	}
@@ -94,7 +91,7 @@ class RecipeController {
 		def list
 		if(params.searchValue) {
 			def value = wrapSearchParam(params.searchValue)
-			list = Recipe.findAllByTitleIlikeOrBodyIlike(value,value)
+			list = Recipe.findAllByTitleIlikeOrBodyIlike(value,value,[sort: "title"])
 		}
 		render(template:'/recipe/searchResults', model:[searchResults:list])
 	}

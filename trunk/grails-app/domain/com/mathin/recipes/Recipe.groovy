@@ -2,7 +2,7 @@ package com.mathin.recipes
 
 import com.mathin.SecUser
 
-class Recipe {
+class Recipe implements Comparable {
 
 	transient springSecurityService
 
@@ -37,5 +37,10 @@ class Recipe {
 		if(!owner) {
 			owner = springSecurityService.currentUser
 		}
+	}
+
+	@Override
+	public int compareTo(Object object) {
+		title.compareTo(object.title)
 	}
 }

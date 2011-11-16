@@ -11,7 +11,17 @@ import org.junit.*
 @TestFor(Recipe)
 class RecipeTests {
 
-    void testSomething() {
-       fail "Implement me"
-    }
+	void testCompareTo() {
+
+		Category mainDish = new Category(name:"Main Dish", rank:2)
+		Recipe a = new Recipe(title:"A main dish",body:"body",category:mainDish)
+		Recipe b = new Recipe(title:"B main dish",body:"body",category:mainDish)
+
+		SortedSet set = new TreeSet()
+		set.add(b)
+		set.add(a)
+
+		assertEquals(a,set.first())
+		assertEquals(b,set.last())
+	}
 }
