@@ -26,4 +26,3 @@ class RecipesBySubCategoryController {
 				])
 	}
 }
-//http://localhost:8080/recipes/recipesBySubCategory/list?user=normal&subCategory=1
