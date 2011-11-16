@@ -22,7 +22,7 @@
     <div id="searchbox" class="indent">
       <h2>
         Search for:
-        <g:remoteField name="search" oncomplete="showSpinner(false);" onloading="showSpinner(true);"
+        <g:remoteField name="search"
           paramName="searchValue" update="searchResults" controller="recipe" action="search" />
       </h2>
     </div>
