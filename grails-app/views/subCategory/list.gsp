@@ -69,9 +69,6 @@
         </g:each>
       </tbody>
     </table>
-    <div class="pagination">
-      <g:paginate total="${subCategoryInstanceTotal}" />
-    </div>
   </div>
 </body>
 </html>
