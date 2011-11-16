@@ -1,10 +1,13 @@
 package com.mathin.recipes
 
+import java.util.SortedSet
+
 import com.mathin.SecUser
 
 class SubCategory implements Comparable {
 
 	transient springSecurityService
+	SortedSet<Recipe> recipes
 
 	static hasMany = [recipes:Recipe]
 
@@ -22,7 +25,7 @@ class SubCategory implements Comparable {
 	static mapping ={
 		id generator:'sequence', params:[sequence:'seq_sub_category']
 	}
-	
+
 	def beforeValidate() {
 		if(!owner) {
 			owner = springSecurityService.currentUser

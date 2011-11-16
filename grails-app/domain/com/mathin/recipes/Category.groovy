@@ -6,6 +6,7 @@ class Category implements Comparable {
 	transient springSecurityService
 
 	SortedSet<SubCategory> subCategories
+	SortedSet<Recipe> recipes
 
 	static hasMany = [subCategories: SubCategory, recipes: Recipe]
 
