@@ -51,12 +51,12 @@ function switchMenu(obj) {
     <div class="indent">
       <g:each in="${categoryInstanceList}" var="categoryInstance">
         <h2>
-          <a href="#" onclick="switchMenu('cat_${categoryInstance.id}');"> ${fieldValue(bean: categoryInstance, field: "name")}
+          <a href="javascript: void()" onclick="switchMenu('cat_${categoryInstance.id}');"> ${fieldValue(bean: categoryInstance, field: "name")}
           </a>
         </h2>
         <div id="cat_${categoryInstance.id}" style="display: none" class="indent">
           <h3>
-            <a href="#" onclick="switchMenu('nosub_${categoryInstance.id}');">Uncategorized</a>
+            <a href="javascript: void()" onclick="switchMenu('nosub_${categoryInstance.id}');">Uncategorized</a>
           </h3>
           <div id="nosub_${categoryInstance.id}" style="display: none">
             <table>
@@ -73,7 +73,7 @@ function switchMenu(obj) {
           </div>
           <g:each in="${categoryInstance.subCategories}" var="subCategoryInstance">
             <h3>
-              <a href="#" onclick="switchMenu('sub_${subCategoryInstance.id}');"> ${fieldValue(bean: subCategoryInstance, field: "name")}
+              <a href="javascript: void()" onclick="switchMenu('sub_${subCategoryInstance.id}');"> ${fieldValue(bean: subCategoryInstance, field: "name")}
               </a>
             </h3>
             <div id="sub_${subCategoryInstance.id}" style="display: none">
