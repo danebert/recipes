@@ -66,14 +66,10 @@
                 </g:link>
                 <br />
               </g:each></td>
-
           </tr>
         </g:each>
       </tbody>
     </table>
-    <div class="pagination">
-      <g:paginate total="${categoryInstanceTotal}" />
-    </div>
   </div>
 </body>
 </html>

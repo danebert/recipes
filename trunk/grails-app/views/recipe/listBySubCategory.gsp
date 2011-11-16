@@ -55,10 +55,6 @@
         </table>
       </div>
     </div>
-
-    <div class="pagination">
-      <g:paginate total="${recipeInstanceTotal}" />
-    </div>
   </div>
 </body>
 </html>
