@@ -26,7 +26,7 @@ environments {
 	production {
 		dataSource {
 			dbCreate = "update"
-			url = "jdbc:h2:~/prodDb;MVCC=TRUE;AUTO_SERVER=TRUE"
+			url = "jdbc:h2:~/recipesDb;MVCC=TRUE;AUTO_SERVER=TRUE"
 			// For MySQL production scenarios enable the following settings
 			//          pooled = true
 			//          properties {
