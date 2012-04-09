@@ -46,11 +46,12 @@
             }
         }
     }
-    
-    // This is called when the page loads to initialize subCategories
-    var zselect = document.getElementById('category')
-    var zopt = zselect.options[zselect.selectedIndex]
-    ${remoteFunction(controller:"ajax", action:"getSubCategories", params:"'id=' + zopt.value", onSuccess:"updateSubCategories(data)")}
+    window.jQuery(function($) {
+        // This is called when the page loads to initialize subCategories
+        var zselect = document.getElementById('category')
+        var zopt = zselect.options[zselect.selectedIndex]
+        ${remoteFunction(controller:"ajax", action:"getSubCategories", params:"'id=' + zopt.value", onSuccess:"updateSubCategories(data)")}
+    });
 </g:javascript>
 
 <div
