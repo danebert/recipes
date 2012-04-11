@@ -1,6 +1,9 @@
 /* Styles for mobile devices */
 
 @media screen and (max-width: 480px) {
+	.narrow {
+    width: auto
+    }
 	.nav {
 		padding: 0.5em;
 	}
