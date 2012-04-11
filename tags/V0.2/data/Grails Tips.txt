@@ -1,0 +1,17 @@
+Tips:
+Use version 2.0.0.RC1 (or better)
+Download from: http://www.grails.org/Download
+
+Main Grails Site: http://grails.org
+API Docs: http://grails.org/doc/2.0.0.RC1/api/
+
+SpringSource Tool Suite: http://www.springsource.com
+                         http://www.grails.org/STS+Integration
+Grails is a Spring project and the STS has some built-ins that help
+
+H2 Database: http://www.h2database.com/html/main.html
+This is the default DB used by Grails.
+
+AJAX: These pages are based on 1.3.7 with prototype (2.0.0.RC1 uses jQuery by default) so require some tweaking to get to work.
+http://www.grails.org/AJAX-Driven+SELECTs+in+GSP
+http://programmingitch.blogspot.com/2011/01/grails-ajax-examples.html
