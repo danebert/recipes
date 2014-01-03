@@ -22,7 +22,7 @@
 </head>
 <body>
   <div id="grailsLogo" role="banner">
-    <h1 class="floatLeft">Recipes Logo here</h1>
+    <span class="indent" id="logo">Recipes</span>
     <div class="right">
       <sec:ifLoggedIn>
        Hello, <sec:loggedInUserInfo field="username"/>. <a href="/recipes/logout/index">Log out</a>

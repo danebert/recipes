@@ -55,10 +55,7 @@ function switchMenu(obj) {
           </a>
         </h2>
         <div id="cat_${categoryInstance.id}" style="display: none" class="indent">
-          <h3>
-            <a href="javascript: void()" onclick="switchMenu('nosub_${categoryInstance.id}');">Uncategorized</a>
-          </h3>
-          <div id="nosub_${categoryInstance.id}" style="display: none">
+          <div id="nosub_${categoryInstance.id}">
             <table>
               <g:each in="${categoryInstance.recipes}" status="ri" var="recipeInstance">
                 <g:if test="${!recipeInstance.subCategory}">
