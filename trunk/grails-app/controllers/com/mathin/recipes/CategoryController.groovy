@@ -9,18 +9,18 @@ class CategoryController {
 
 	def list() {
 		def user = springSecurityService.currentUser
-		
+
 		if (!user){
 			redirect(uri: "/")
 			return
 		}
 		def categories = Category.findAllByOwner(user)
 		[
-					categoryInstanceTotal: categories.size(),
-					categoryInstanceList: categories
-				]
+			categoryInstanceTotal: categories.size(),
+			categoryInstanceList: categories
+		]
 	}
-	
+
 	def edit() {
 
 		def user = springSecurityService.currentUser
@@ -31,7 +31,7 @@ class CategoryController {
 			[categoryInstance: category]
 		} else {
 			flash.message = "You cannot edit because this is not your Category"
-			redirect action: show, id: category.id
+			redirect action: 'show', id: category.id
 		}
 	}
 
@@ -68,7 +68,7 @@ class CategoryController {
 			}
 		} else {
 			flash.message = "You cannot delete because this is not your Category"
-			redirect action: show, id: categoryInstance.id
+			redirect action: 'show', id: categoryInstance.id
 		}
 	}
 }
