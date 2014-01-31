@@ -9,38 +9,39 @@ class SubCategoryController {
 
 	def list() {
 		def user = springSecurityService.currentUser
-		
+
 		if (!user){
 			redirect(uri: "/")
 			return
 		}
 		def subCategories = SubCategory.findAllByOwner(user)
 		[
-					subCategoryInstanceTotal: subCategories.size(),
-					subCategoryInstanceList: subCategories
-				]
+			subCategoryInstanceTotal: subCategories.size(),
+			subCategoryInstanceList: subCategories
+		]
 	}
-	
+
 	def create() {
 		[
-					categoryInstanceList: Category.findAllByOwner(springSecurityService.currentUser)
-				]
+			categoryInstanceList: Category.findAllByOwner(springSecurityService.currentUser)
+		]
 	}
-	
+
 	def edit() {
 		def user = springSecurityService.currentUser
 
 		def subCategory = SubCategory.get(params.id)
 		if(subCategory.owner.equals(user)) {
 			[
-						subCategoryInstance: subCategory,
-						categoryInstanceList: Category.findAllByOwner(subCategory.owner)
-					]
+				subCategoryInstance: subCategory,
+				categoryInstanceList: Category.findAllByOwner(subCategory.owner)
+			]
 		} else {
 			flash.message = "You cannot edit because this is not your SubCategory"
-			redirect action: show, id: subCategory.id
+			redirect action: 'show', id: subCategory.id
 		}
 	}
+
 	def delete() {
 		def user = springSecurityService.currentUser
 		def subCategoryInstance = SubCategory.get(params.id)
@@ -70,7 +71,7 @@ class SubCategoryController {
 			}
 		} else {
 			flash.message = "You cannot delete because this is not your SubCategory"
-			redirect action: show, id: subCategoryInstance.id
+			redirect action: 'show', id: subCategoryInstance.id
 		}
 	}
 }

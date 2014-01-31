@@ -1,7 +1,5 @@
 package com.mathin.recipes
 
-import java.util.SortedSet
-
 import com.mathin.SecUser
 
 class SubCategory implements Comparable {

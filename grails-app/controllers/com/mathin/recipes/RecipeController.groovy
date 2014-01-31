@@ -1,6 +1,7 @@
 package com.mathin.recipes
 
 import org.springframework.dao.DataIntegrityViolationException
+
 import com.mathin.SecUser
 
 class RecipeController {
@@ -23,17 +24,17 @@ class RecipeController {
 		}
 
 		[
-					ownerInstance: owner,
-					categoryInstanceList: categories
-				]
+			ownerInstance: owner,
+			categoryInstanceList: categories
+		]
 	}
 
 	def create() {
 		def user = springSecurityService.currentUser
 		[
-					ownerInstance: user,
-					categoryInstanceList: Category.findAllByOwner(user)
-				]
+			ownerInstance: user,
+			categoryInstanceList: Category.findAllByOwner(user)
+		]
 	}
 
 	def edit() {
@@ -44,12 +45,12 @@ class RecipeController {
 
 		if(recipe.owner.equals(user)) {
 			[
-						recipeInstance: recipe,
-						categoryInstanceList: Category.findAllByOwner(recipe.owner)
-					]
+				recipeInstance: recipe,
+				categoryInstanceList: Category.findAllByOwner(recipe.owner)
+			]
 		} else {
 			flash.message = "You cannot edit because this is not your Recipe"
-			redirect action: show, id: recipe.id
+			redirect action: 'show', id: recipe.id
 		}
 	}
 
@@ -83,7 +84,7 @@ class RecipeController {
 			}
 		} else {
 			flash.message = "You cannot delete because this is not your Recipe"
-			redirect action: show, id: recipeInstance.id
+			redirect action: 'show', id: recipeInstance.id
 		}
 	}
 
