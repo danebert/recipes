@@ -47,7 +47,13 @@ grails.resources.adhoc.patterns = [
 	'/js/*',
 	'/plugins/*'
 ]
-
+grails.resources.modules = {
+	overrides {
+		'jquery-theme' {
+			resource id:'theme', url:'http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css'
+		}
+	}
+}
 
 // The default codec used to encode data with ${}
 grails.views.default.codec = "none" // none, html, base64
@@ -116,38 +122,38 @@ grails.plugins.springsecurity.authority.className = 'com.mathin.SecRole'
 // URL-based Rules
 grails.plugins.springsecurity.securityConfigType = SecurityConfigType.InterceptUrlMap
 grails.plugins.springsecurity.interceptUrlMap = [
-			'/category/create':     ['ROLE_USER'],
-			'/category/edit/*':     ['ROLE_USER'],
-			'/subCategory/create':  ['ROLE_USER'],
-			'/subCategory/edit/*':  ['ROLE_USER'],
-			'/recipe/create':       ['ROLE_USER'],
-			'/recipe/edit/*':       ['ROLE_USER'],
-			'/management':          ['ROLE_USER'],
-			'/dbconsole':           ['ROLE_ADMIN'],
-			'/**':                  [
-				'IS_AUTHENTICATED_ANONYMOUSLY']
-		]
+	'/category/create':     ['ROLE_USER'],
+	'/category/edit/*':     ['ROLE_USER'],
+	'/subCategory/create':  ['ROLE_USER'],
+	'/subCategory/edit/*':  ['ROLE_USER'],
+	'/recipe/create':       ['ROLE_USER'],
+	'/recipe/edit/*':       ['ROLE_USER'],
+	'/management':          ['ROLE_USER'],
+	'/dbconsole':           ['ROLE_ADMIN'],
+	'/**':                  [
+		'IS_AUTHENTICATED_ANONYMOUSLY']
+]
 
 // Uncomment and edit the following lines to start using Grails encoding & escaping improvements
 
 /* remove this line 
-// GSP settings
-grails {
-    views {
-        gsp {
-            encoding = 'UTF-8'
-            htmlcodec = 'xml' // use xml escaping instead of HTML4 escaping
-            codecs {
-                expression = 'html' // escapes values inside null
-                scriptlet = 'none' // escapes output from scriptlets in GSPs
-                taglib = 'none' // escapes output from taglibs
-                staticparts = 'none' // escapes output from static template parts
-            }
-        }
-        // escapes all not-encoded output at final stage of outputting
-        filteringCodecForContentType {
-            //'text/html' = 'html'
-        }
-    }
-}
-remove this line */
+ // GSP settings
+ grails {
+ views {
+ gsp {
+ encoding = 'UTF-8'
+ htmlcodec = 'xml' // use xml escaping instead of HTML4 escaping
+ codecs {
+ expression = 'html' // escapes values inside null
+ scriptlet = 'none' // escapes output from scriptlets in GSPs
+ taglib = 'none' // escapes output from taglibs
+ staticparts = 'none' // escapes output from static template parts
+ }
+ }
+ // escapes all not-encoded output at final stage of outputting
+ filteringCodecForContentType {
+ //'text/html' = 'html'
+ }
+ }
+ }
+ remove this line */

@@ -18,6 +18,7 @@ class Category implements Comparable {
 
 	static mapping ={
 		id generator:'sequence', params:[sequence:'seq_category']
+		sort 'rank'
 	}
 
 	def beforeValidate() {

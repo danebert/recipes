@@ -19,11 +19,6 @@
 	border-radius: 0.6em;
 }
 
-.ie6 #status {
-	display: inline;
-	/* float double margin fix http://www.positioniseverything.net/explorer/doubled-margin.html */
-}
-
 #status ul {
 	font-size: 0.9em;
 	list-style-type: none;
@@ -76,10 +71,14 @@ p {
 <body>
 	<div class="center">
 		<h1>
-			<a href="/recipes/category/list">Categories</a>
-		</h1>
-		<h1>
-			<a href="/recipes/subCategory/list">SubCategories</a>
+			<ul type="none">
+				<li><g:link class="list" action="list" controller="category">
+						<g:message code="default.list.label" args="['Category']" />
+					</g:link></li>
+				<li><g:link class="list" action="list" controller="subCategory">
+						<g:message code="default.list.label" args="['SubCategory']" />
+					</g:link>
+			</ul>
 		</h1>
 	</div>
 </body>

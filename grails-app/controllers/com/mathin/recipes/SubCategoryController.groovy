@@ -8,13 +8,43 @@ class SubCategoryController {
 	static scaffold = true
 
 	def list() {
+		populateForCurrentUser()
+	}
+
+	def order() {
+		populateForCurrentUser()
+	}
+
+	def saveOrder() {
+
+		flash.message = 'Order Updated'
+
+		def categoryId
+		for (int i; i < params.order.size(); i++) {
+
+			def subCategory = SubCategory.get(params.order[i])
+			subCategory.rank = i + 1
+			subCategory.save(flush:true)
+			categoryId = subCategory.category.id
+		}
+		redirect action: 'order',  params: [category: categoryId]
+	}
+
+	private def populateForCurrentUser() {
 		def user = springSecurityService.currentUser
 
 		if (!user){
 			redirect(uri: "/")
 			return
 		}
-		def subCategories = SubCategory.findAllByOwner(user)
+		def subCategories
+		if(params.category){
+			def category = Category.get(params.category)
+			subCategories = SubCategory.findAllByOwnerAndCategory(user, category)
+		} else {
+			subCategories = SubCategory.findAllByOwner(user)
+		}
+
 		[
 			subCategoryInstanceTotal: subCategories.size(),
 			subCategoryInstanceList: subCategories
