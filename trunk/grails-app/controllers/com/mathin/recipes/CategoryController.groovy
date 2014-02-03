@@ -8,18 +8,26 @@ class CategoryController {
 	static scaffold = true
 
 	def list() {
-		def user = springSecurityService.currentUser
-
-		if (!user){
-			redirect(uri: "/")
-			return
-		}
-		def categories = Category.findAllByOwner(user)
-		[
-			categoryInstanceTotal: categories.size(),
-			categoryInstanceList: categories
-		]
+		populateForCurrentUser()
 	}
+
+	def order() {
+		populateForCurrentUser()
+	}
+
+	def saveOrder() {
+
+		flash.message = 'Order Updated'
+
+		for (int i; i < params.order.size(); i++) {
+
+			def category = Category.get(params.order[i])
+			category.rank = i + 1
+			category.save(flush:true)
+		}
+		redirect action: 'order'
+	}
+
 
 	def edit() {
 
@@ -70,5 +78,20 @@ class CategoryController {
 			flash.message = "You cannot delete because this is not your Category"
 			redirect action: 'show', id: categoryInstance.id
 		}
+	}
+
+	private def populateForCurrentUser() {
+		def user = springSecurityService.currentUser
+
+		if (!user){
+			redirect(uri: "/")
+			return
+		}
+
+		def categories = Category.findAllByOwner(user)
+		[
+			categoryInstanceTotal: categories.size(),
+			categoryInstanceList: categories
+		]
 	}
 }

@@ -54,6 +54,63 @@ class CategoryControllerTests {
 	}
 
 	@Test
+	void orderRedirectsIfNoUser() {
+		// act
+		controller.order()
+
+		assertThat(response.redirectedUrl, is('/'))
+	}
+
+	@Test
+	void orderModelIncludesListAndSizeWhenUserPresent() {
+		mockSpringSecurityService.demand.getCurrentUser { -> user }
+
+		// act
+		def model = controller.order()
+
+		assertThat(model.categoryInstanceTotal, is(1))
+		assertThat(model.categoryInstanceList, notNullValue())
+	}
+
+	@Test
+	void saveOrderSetsFlashMessage() {
+		params.order = []
+
+		// act
+		def model = controller.saveOrder()
+		assertThat(flash.message, is('Order Updated'))
+	}
+
+	@Test
+	void saveOrderRendersOrderView() {
+		params.order = []
+
+		// act
+		def model = controller.saveOrder()
+		assertThat(response.redirectedUrl, is('/category/order'))
+	}
+
+	@Test
+	void saveOrderUpdatesCatetories() {
+
+		def category2 = new Category(owner: user, name: 'category name 2', rank: 2)
+		category2.save(flush: true, failOnError: true)
+
+		def category3 = new Category(owner: user, name: 'category name 2', rank: 3)
+		category3.save(flush: true, failOnError: true)
+
+
+		params.order = [3, 1, 2]
+
+		// act
+		controller.saveOrder()
+
+		assertThat(category.rank, is(2))
+		assertThat(category2.rank, is(3))
+		assertThat(category3.rank, is(1))
+	}
+
+	@Test
 	void editDoesNotAllowEditOfOtherUsersCategory() {
 		params.id = 1
 

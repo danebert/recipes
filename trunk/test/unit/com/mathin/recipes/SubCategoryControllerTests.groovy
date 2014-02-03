@@ -56,6 +56,65 @@ class SubCategoryControllerTests {
 		assertThat(model.subCategoryInstanceList, notNullValue())
 	}
 
+
+	@Test
+	void orderRedirectsIfNoUser() {
+		// act
+		controller.order()
+
+		assertThat(response.redirectedUrl, is('/'))
+	}
+
+	@Test
+	void orderModelIncludesListAndSizeWhenUserPresent() {
+		mockSpringSecurityService.demand.getCurrentUser { -> user }
+
+		def category2 = new Category(owner: user, name: 'category name', rank: 1)
+		category2.save(flush: true, failOnError: true)
+
+		def subCategory2 = new SubCategory(owner: user, category: category2, name: 'sub name', rank: 1)
+		subCategory2.save(flush: true, failOnError: true)
+
+		params.category = '1'
+
+		// act
+		def model = controller.order()
+
+		assertThat(model.subCategoryInstanceTotal, is(1))
+		assertThat(model.subCategoryInstanceList, notNullValue())
+	}
+
+	@Test
+	void saveOrderSetsFlashMessage() {
+		params.order = []
+
+		// act
+		def model = controller.saveOrder()
+		assertThat(flash.message, is('Order Updated'))
+	}
+
+	@Test
+	void saveOrderUpdatesCatetoriesAndRedirectsToSameCategory() {
+
+		def subCategory2 = new SubCategory(category: category, owner: user, name: 'subcategory name 2', rank: 2)
+		subCategory2.save(flush: true, failOnError: true)
+
+		def subCategory3 = new SubCategory(category: category, owner: user, name: 'subcategory name 2', rank: 3)
+		subCategory3.save(flush: true, failOnError: true)
+
+
+		params.order = [3, 1, 2]
+
+		// act
+		controller.saveOrder()
+
+		assertThat(subCategory.rank, is(2))
+		assertThat(subCategory2.rank, is(3))
+		assertThat(subCategory3.rank, is(1))
+
+		assertThat(response.redirectedUrl, is('/subCategory/order?category=1'))
+	}
+
 	@Test
 	void editDoesNotAllowEditOfOtherUsersSubCategory() {
 		params.id = 1
