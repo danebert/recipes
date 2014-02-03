@@ -88,7 +88,7 @@ class CategoryController {
 			return
 		}
 
-		def categories = Category.findAllByOwner(user)
+		def categories = Category.findAllByOwner(user, [sort:"rank", order: "asc"])
 		[
 			categoryInstanceTotal: categories.size(),
 			categoryInstanceList: categories
