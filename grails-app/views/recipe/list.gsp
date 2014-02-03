@@ -55,19 +55,7 @@ function switchMenu(obj) {
           </a>
         </h2>
         <div id="cat_${categoryInstance.id}" style="display: none" class="indent">
-          <div id="nosub_${categoryInstance.id}">
-            <table>
-              <g:each in="${categoryInstance.recipes}" status="ri" var="recipeInstance">
-                <g:if test="${!recipeInstance.subCategory}">
-                  <tr class="${(ri % 2) == 0 ? 'even' : 'odd'}">
-                    <td><g:link action="show" id="${recipeInstance.id}">
-                        ${fieldValue(bean: recipeInstance, field: "title")}
-                      </g:link></td>
-                  </tr>
-                </g:if>
-              </g:each>
-            </table>
-          </div>
+         
           <g:each in="${categoryInstance.subCategories}" var="subCategoryInstance">
             <h3>
               <a href="javascript: void()" onclick="switchMenu('sub_${subCategoryInstance.id}');"> ${fieldValue(bean: subCategoryInstance, field: "name")}
@@ -85,10 +73,22 @@ function switchMenu(obj) {
               </table>
             </div>
           </g:each>
+           <div id="nosub_${categoryInstance.id}">
+            <table>
+              <g:each in="${categoryInstance.recipes}" status="ri" var="recipeInstance">
+                <g:if test="${!recipeInstance.subCategory}">
+                  <tr class="${(ri % 2) == 0 ? 'even' : 'odd'}">
+                    <td><g:link action="show" id="${recipeInstance.id}">
+                        ${fieldValue(bean: recipeInstance, field: "title")}
+                      </g:link></td>
+                  </tr>
+                </g:if>
+              </g:each>
+            </table>
+          </div>
         </div>
       </g:each>
     </div>
-
   </div>
 </body>
 </html>
