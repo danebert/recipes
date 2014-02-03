@@ -40,9 +40,9 @@ class SubCategoryController {
 		def subCategories
 		if(params.category){
 			def category = Category.get(params.category)
-			subCategories = SubCategory.findAllByOwnerAndCategory(user, category)
+			subCategories = SubCategory.findAllByOwnerAndCategory(user, category, [sort:"rank", order: "asc"])
 		} else {
-			subCategories = SubCategory.findAllByOwner(user)
+			subCategories = SubCategory.findAllByOwner(user, [sort:"rank", order: "asc"])
 		}
 
 		[

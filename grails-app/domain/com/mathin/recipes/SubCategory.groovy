@@ -22,12 +22,15 @@ class SubCategory implements Comparable {
 	}
 	static mapping ={
 		id generator:'sequence', params:[sequence:'seq_sub_category']
-		sort 'rank'
 	}
 
 	def beforeValidate() {
 		if(!owner) {
 			owner = springSecurityService.currentUser
+		}
+
+		if(!rank) {
+			rank = 0
 		}
 	}
 
