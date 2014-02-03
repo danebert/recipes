@@ -27,7 +27,7 @@
     </g:each>
   </div>
   <div class="center small floatRight">
-    <a href="/recipes/management">Manage Recipes</a>
+    <a href="/recipes/management">Manage Recipe Display</a>
   </div>
   <br />
 </body>

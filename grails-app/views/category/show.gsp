@@ -1,4 +1,3 @@
-
 <%@ page import="com.mathin.recipes.Category"%>
 <!doctype html>
 <html>
@@ -14,6 +13,7 @@
     <ul>
       <li><a class="home" href="${createLink(uri: '/')}"><g:message
             code="default.home.label" /></a></li>
+      <li><a class="home" href="${createLink(uri: '/management')}">Manage Display</a></li>
       <li><g:link class="list" action="list">
           <g:message code="default.list.label" args="[entityName]" />
         </g:link></li>
