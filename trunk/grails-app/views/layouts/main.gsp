@@ -22,8 +22,8 @@
 </head>
 <body>
   <div id="grailsLogo" role="banner">
-    <span class="indent" id="logo">Recipes</span>
-    <div class="right">
+    <a href="${createLink(uri: '/')}"><span class="indent" id="logo">Recipes</span></a>
+    <div class="floatRight">
       <sec:ifLoggedIn>
        Hello, <sec:loggedInUserInfo field="username"/>. <a href="/recipes/logout/index">Log out</a>
       </sec:ifLoggedIn>

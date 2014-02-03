@@ -187,9 +187,10 @@ img {
 }
 
 /* GENERAL */
-#grailsLogo a {
+#grailsLogo {
 	display: inline-block;
 	margin: 1em;
+	width: 95%
 }
 
 .content {
