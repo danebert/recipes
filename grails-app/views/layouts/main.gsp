@@ -36,7 +36,8 @@
   </div>
   <g:layoutBody />
   <div class="footer" role="contentinfo">
-    <img src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails" />
+    <img src="${resource(dir: 'images', file: 'Recipes.png')}" alt="Recipes" />
+    <span class="floatRight">V <g:meta name="app.version"/></span>
   </div>
   <div id="spinner" class="spinner" style="display: none;">
     <g:message code="spinner.alt" default="Loading&hellip;" />
