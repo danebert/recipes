@@ -39,7 +39,7 @@
 		</g:if>
 
 		<form method="POST" action="saveOrder">
-			<div id="categories" class="center">
+			<div id="sortableDiv" class="center">
 				&nbsp;
 				<ul id="sortable" class="rankings">
 					<g:each in="${categoryInstanceList}" status="i"
@@ -60,7 +60,7 @@
 		</form>
 	</div>
 	<g:javascript>
-		     $( "#sortable" ).sortable({ axis: "y", containment: "#categories", scroll: false });
+		     $( "#sortable" ).sortable({ axis: "y", containment: "#sortableDiv", scroll: false });
 			 $( "#sortable" ).disableSelection();
     </g:javascript>
 </body>

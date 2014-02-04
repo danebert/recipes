@@ -150,10 +150,6 @@ body {
 	box-shadow: 0 0 0.3em #255b17;
 }
 
-#grailsLogo {
-	background-color: #abbf78;
-}
-
 a:link,a:visited,a:hover {
 	color: #48802c;
 }
@@ -173,6 +169,7 @@ img {
 
 /* GENERAL */
 #grailsLogo {
+	background-color: #abbf78;
 	display: inline-block;
 	margin: 1em;
 	width: 95%
