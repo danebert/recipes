@@ -10,7 +10,7 @@
 <g:javascript library="jquery" />
 <r:require module="jquery-ui" />
 <r:require module="jquery-theme" />
-
+<g:javascript library="touchPunch" />
 </head>
 <body>
 	<a href="#list-subCategory" class="skip" tabindex="-1"><g:message
