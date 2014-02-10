@@ -36,15 +36,9 @@
 		<table>
 			<thead>
 				<tr>
-					<g:sortableColumn property="name"
-						title="${message(code: 'category.name.label', default: 'Name')}" />
-
-					<g:sortableColumn property="rank"
-						title="${message(code: 'category.rank.label', default: 'Rank')}" />
-
-					<g:sortableColumn property="owner"
-						title="${message(code: 'category.owner.label', default: 'Owner')}" />
-
+					<th>Name</th>
+					<th>Rank</th>
+					<th>Owner</th>
 					<th>SubCategories</th>
 				</tr>
 			</thead>

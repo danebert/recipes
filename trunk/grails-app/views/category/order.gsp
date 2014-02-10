@@ -9,7 +9,7 @@
 
 <g:javascript library="jquery" />
 <r:require module="jquery-ui" />
-<r:require module="jquery-theme" />
+<r:require module="jqueryuitheme" />
 <g:javascript library="touchPunch" />
 </head>
 <body>

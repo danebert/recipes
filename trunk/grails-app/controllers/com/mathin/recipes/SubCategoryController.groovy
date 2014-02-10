@@ -42,7 +42,11 @@ class SubCategoryController {
 			def category = Category.get(params.category)
 			subCategories = SubCategory.findAllByOwnerAndCategory(user, category, [sort:"rank", order: "asc"])
 		} else {
-			subCategories = SubCategory.findAllByOwner(user, [sort:"rank", order: "asc"])
+			subCategories = SubCategory.createCriteria().list {
+				eq('owner', user)
+				order('category', 'desc')
+				order('rank', 'asc')
+			}
 		}
 
 		[
